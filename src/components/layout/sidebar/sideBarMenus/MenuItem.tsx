@@ -7,10 +7,13 @@ interface Props {
 }
 export function MenuItem({ item }: Props) {
   return (
-    <li>
-      <Link href={item.link}>
-        <span>{item.label}</span>
+    <li className="mb-1">
+      <Link
+        href={item.link}
+        className="flex items-center gap-2 bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-300 hover:text-gray-900 "
+      >
         <FontAwesomeIcon icon={item.icon} />
+        <span>{item.label}</span>
       </Link>
     </li>
   );
