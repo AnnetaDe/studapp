@@ -5,7 +5,7 @@ class studentPage {
   DASHBOARD = '/dashboard';
   AWARDS = '/awards';
   SCHEDULE = '/schedule';
-  TESTS = '/tests';
+  GENERATE = '/generate';
   SETTINGS = '/settings';
 }
 

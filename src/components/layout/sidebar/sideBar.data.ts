@@ -37,7 +37,7 @@ export const SIDEBAR_DATA: ISidebarNavItem[] = [
   {
     icon: faBrain,
     label: 'Tests',
-    link: STUDENT_PAGE_config.TESTS,
+    link: STUDENT_PAGE_config.GENERATE,
     isBottomBorder: true,
   },
 ];
