@@ -25,7 +25,7 @@ export default function TestGenerated({ data }: Props) {
           <QuestionItemNoAnswer
             key={`${data.test_id}-q${idx}`}
             item={test}
-            checked_answer={checked()}
+            // checked_answer={checked()}
             handleChange={handleChange}
           />
         );

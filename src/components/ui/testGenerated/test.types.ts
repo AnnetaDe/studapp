@@ -7,4 +7,5 @@ export interface ITestResponse {
   subject: string;
   tests: IQuestionItemNoAnswer[];
   completed: boolean;
+  count:string
 }
