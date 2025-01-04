@@ -7,12 +7,22 @@ export function SideBarHeader() {
   return (
     <div className="flex gap-4 px-4 py-4 items-center">
       <button>
-        <FontAwesomeIcon icon={faNavicon} fontSize={24} />
+        <FontAwesomeIcon icon={faNavicon} fontSize={26} />
       </button>
 
       <Link href="/">
         <span className="mr-2">StudApp</span>
-        <FontAwesomeIcon icon={faGraduationCap} fontSize={24} />
+
+        <FontAwesomeIcon
+          icon={faGraduationCap}
+          fontSize={26}
+          color="white"
+          style={{
+            strokeWidth: '12px',
+            stroke: 'black',
+            filter: 'drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))',
+          }}
+        />
       </Link>
     </div>
   );
