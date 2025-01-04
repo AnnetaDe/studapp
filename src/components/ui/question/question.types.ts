@@ -12,20 +12,13 @@ export enum LevelEnum {
 }
 
 export interface IQuestionItemNoAnswer {
-  id: string;
   question: string;
   choices: Record<ChoicesEnum, string>;
-  subject: string;
   submit_answer: string;
-  level: Record<LevelEnum, string>;
-  hash: string;
 }
 export interface IQuestionItemAnswered {
-  id: string;
   question: string;
   choices: Record<ChoicesEnum, string>;
   subject: string;
   answer: ChoicesEnum;
-  level: Record<LevelEnum, string>;
-  hash: string;
 }
