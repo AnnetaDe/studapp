@@ -1,9 +1,6 @@
 import type { ISidebarNavItem } from '../sidebar.types';
 import { MenuItem } from './MenuItem';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-// 'use client';
-
 interface SideBarMenuProps {
   title?: string;
   menu: ISidebarNavItem[];

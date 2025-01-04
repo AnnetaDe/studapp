@@ -7,6 +7,9 @@ class studentPage {
   SCHEDULE = '/schedule';
   GENERATE = '/generate';
   SETTINGS = '/settings';
+  TEST(path: string) {
+    return `/t/${path}`;
+  }
 }
 
 export const STUDENT_PAGE_config = new studentPage();
