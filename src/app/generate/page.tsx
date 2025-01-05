@@ -15,10 +15,11 @@ const data = {
     {
       question: 'What is the sum of the first 10 terms of the arithmetic sequence 3, 7, 11, ...?',
       choices: {
-        '1': '230',
-        '2': '260',
-        '3': '270',
-        '4': '300',
+        '1': 'jgjhgjhgghjgl vjhvjhljgljg jlhjllllllllll',
+        '2': 'kjk;j;j;j;lj',
+        '3': 'k;lklk;lk;lk',
+        '4':
+          'the maximum number of regions that can be formed by joining 10 points on a circle with straight lines?',
       },
       submit_answer:
         'gAAAAABneXxgYKJhr1V114iD1pgVlkG6ez40F-26p-9cBsUmEOgcOl7722NBAZvgRvfqHmxS65_lO2MwzL9vBCy7lPvMb8JlSw==',
@@ -27,10 +28,10 @@ const data = {
       question:
         'What is the maximum number of regions that can be formed by joining 10 points on a circle with straight lines?',
       choices: {
-        '1': '36',
-        '2': '44',
+        '1': 'jjjjjjjjjjjjj jjjjjjjjjjjjjj jjjjjjjjj jjjkllllllllll llllllllllllllllll',
+        '2': 'kgkjjjjjjjjjjjjjjjjjjjjjjj jjjjjjjjjjjjjjj jjjjjjjjjjj jjjjjjjjjjjj',
         '3': '42',
-        '4': '40',
+        '4': 'kkkkkkkkkkkkkkkkkkkkkkkk kkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkk',
       },
       submit_answer:
         'gAAAAABneXxgTxocKu_zwaPrIcyg_IGkGrvmdSvJeJS-G4RSbO-upSDb3_yoPRIoKlpMGm9favUBrqRvZcW4hNjfvPL8S_nsqQ==',
@@ -38,12 +39,9 @@ const data = {
   ],
   completed: false,
   date: '2025-01-04 18:22:24',
+  count: 2,
 };
 
 export default function Page() {
-  return (
-    <div>
-      <TestGenerated data={data} />
-    </div>
-  );
+  return <TestGenerated data={data} />;
 }

@@ -4,12 +4,7 @@ export enum ChoicesEnum {
   C = '3',
   D = '4',
 }
-export enum LevelEnum {
-  Easy = '1',
-  Medium = '2',
-  Advanced = '3',
-  Expert = '4',
-}
+
 
 export interface IQuestionItemNoAnswer {
   question: string;

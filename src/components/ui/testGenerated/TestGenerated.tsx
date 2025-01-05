@@ -17,19 +17,22 @@ export default function TestGenerated({ data }: Props) {
   };
 
   return (
-    <div>
-      <p>{data.subject}</p>
+    <div className="test-generated col-span-3 row-span-1 max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+      <h3>{data.subject}</h3>
       <p>{data.level}</p>
-      {data.tests.map((test: IQuestionItemNoAnswer, idx: number) => {
-        return (
-          <QuestionItemNoAnswer
-            key={`${data.test_id}-q${idx}`}
-            item={test}
-            // checked_answer={checked()}
-            handleChange={handleChange}
-          />
-        );
-      })}
+      <ol>
+        {data.tests.map((test: IQuestionItemNoAnswer, idx: number) => {
+          return (
+            <QuestionItemNoAnswer
+              key={`${data.test_id}-q${idx}`}
+              item={test}
+              question_index={idx}
+              // checked_answer={checked()}
+              handleChange={handleChange}
+            />
+          );
+        })}
+      </ol>
     </div>
   );
 }

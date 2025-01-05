@@ -7,5 +7,12 @@ export interface ITestResponse {
   subject: string;
   tests: IQuestionItemNoAnswer[];
   completed: boolean;
-  count:string
+  count:number
+}
+
+export enum LevelEnum {
+  Easy = '1',
+  Medium = '2',
+  Advanced = '3',
+  Expert = '4',
 }

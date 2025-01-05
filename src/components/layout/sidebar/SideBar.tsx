@@ -5,7 +5,7 @@ import SideMenu from './sideBarMenus/SideMenu';
 
 export function Sidebar() {
   return (
-    <aside className="sidebar bg-gray-500 h-screen block ">
+    <aside className="sidebar bg-gray-500 col-span-1 row-span-2">
       <SideBarHeader />
 
       <SideMenu menu={SIDEBAR_DATA} />

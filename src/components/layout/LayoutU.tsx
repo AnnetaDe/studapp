@@ -8,7 +8,7 @@ interface LayoutUProps {
 
 export default function LayoutU({ children }: LayoutUProps) {
   return (
-    <div className="layout-student grid grid-cols-6">
+    <div className="layout-student grid grid-cols-[220px_1fr_1fr_1fr_1fr] grid-rows-1">
       <Sidebar />
       <Content>{children}</Content>
     </div>
