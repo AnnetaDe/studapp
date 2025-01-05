@@ -9,7 +9,7 @@ const data = {
   test_id: '7e1fa80c-51dc-41be-957e-d84f19f5a152',
   message: 'Test created',
   status: 'success',
-  level: '4',
+  level: 4,
   subject: 'math',
   tests: [
     {
@@ -29,9 +29,9 @@ const data = {
         'What is the maximum number of regions that can be formed by joining 10 points on a circle with straight lines?',
       choices: {
         '1': 'jjjjjjjjjjjjj jjjjjjjjjjjjjj jjjjjjjjj jjjkllllllllll llllllllllllllllll',
-        '2': 'kgkjjjjjjjjjjjjjjjjjjjjjjj jjjjjjjjjjjjjjj jjjjjjjjjjj jjjjjjjjjjjj',
+        '2': 'kgkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj jjjjjjjjjjj jjjjjjjjjjjj',
         '3': '42',
-        '4': 'kkkkkkkkkkkkkkkkkkkkkkkk kkkkkkk kkkkkkkkkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkk',
+        '4': 'kkkkkkkkk kkkkkkkk kkkkkkkkkkkkk kkkkkkkkkkkkkkkkk kkkkkkkkkk kkkkkkkkkkkkkk',
       },
       submit_answer:
         'gAAAAABneXxgTxocKu_zwaPrIcyg_IGkGrvmdSvJeJS-G4RSbO-upSDb3_yoPRIoKlpMGm9favUBrqRvZcW4hNjfvPL8S_nsqQ==',

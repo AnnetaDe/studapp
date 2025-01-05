@@ -6,9 +6,15 @@ interface Props {
   // checked_answer: boolean;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   question_index: number;
+  selectedValue: number;
 }
 
-export default function QuestionItemNoAnswer({ item, handleChange, question_index }: Props) {
+export default function QuestionItemNoAnswer({
+  item,
+  handleChange,
+  question_index,
+  selectedValue,
+}: Props) {
   return (
     <li className="w-50 outline p-6 bg-white">
       <div className="divide-y divide-gray-200">
@@ -26,9 +32,10 @@ export default function QuestionItemNoAnswer({ item, handleChange, question_inde
               <input
                 className=" size-4 rounded border-gray-300"
                 type="checkbox"
-                // checked={checked_answer}
+                value={Number(key)}
                 onChange={handleChange}
                 id={`choice-${question_index}-${key}`}
+                checked={selectedValue === Number(key)}
               />
             </div>
             <span className="flex-wrap">

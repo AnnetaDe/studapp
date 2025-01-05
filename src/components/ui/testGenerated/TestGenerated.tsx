@@ -1,7 +1,9 @@
 'use client';
 import QuestionItemNoAnswer from '../question/QuestionItem';
 import type { IQuestionItemNoAnswer } from '../question/question.types';
-import type { ITestResponse } from './test.types';
+import { LevelEnum, type ITestResponse } from './test.types';
+import { useForm, Controller } from "react-hook-form";
+
 import React from 'react';
 
 interface Props {
@@ -9,30 +11,66 @@ interface Props {
 }
 
 export default function TestGenerated({ data }: Props) {
-  const handleChange = () => {
-    console.log('change');
-  };
-  const checked = () => {
-    return false;
+  const { handleSubmit, control,watch,getValues } = useForm();
+  const onSubmit = (formData: Record<string, string | number>) => {
+    const submissionData = {
+      test_id: data.test_id,
+      selected_answers: Object.values(formData).map(Number),
+    };
+  console.log(submissionData);
   };
 
+  const levelLabels: { [key in LevelEnum]: string } = {
+    [LevelEnum.EASY]: "EASY",
+    [LevelEnum.MEDIUM]: "MEDIUM",
+    [LevelEnum.INTERMEDIATE]: "INTERMEDIATE",
+    [LevelEnum.DIFFICULT]: "DIFFICULT",
+  };
+  const levelLabel = levelLabels[data.level as LevelEnum];
+
+console.log(watch());
+console.log(getValues());
+
+
+
+
+
   return (
-    <div className="test-generated col-span-3 row-span-1 max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-      <h3>{data.subject}</h3>
-      <p>{data.level}</p>
+    <form className="test-generated col-span-3 row-span-1 max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
+    onSubmit={handleSubmit(onSubmit)}>
+      <div className='p-6'>
+        <h3>SUBJECT: {data.subject}</h3>
+        <span className='p-1 border rounded-sm'>{levelLabel}</span>
+      </div>
       <ol>
         {data.tests.map((test: IQuestionItemNoAnswer, idx: number) => {
           return (
-            <QuestionItemNoAnswer
-              key={`${data.test_id}-q${idx}`}
-              item={test}
-              question_index={idx}
-              // checked_answer={checked()}
-              handleChange={handleChange}
-            />
+            <Controller
+              name={`question-${idx}`}
+              control={control}
+              defaultValue={""}
+                render={({field}) => (
+                  <QuestionItemNoAnswer
+                    key={`${data.test_id}-q${idx}`}
+                    item={test}
+                    question_index={idx}
+                    handleChange={field.onChange}
+                    selectedValue={Number(field.value)}
+                  />
+                )}
+                key={`${data.test_id}-controller-${idx}`}
+              />
           );
         })}
       </ol>
-    </div>
+      <div className="p-6">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   );
 }
