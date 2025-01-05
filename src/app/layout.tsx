@@ -24,9 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto.variable} ${noto.variable} antialiased`}>
-        <LayoutU> {children}</LayoutU>
-      </body>
+      <body className={`${noto.variable} ${noto.variable} antialiased`}>{children}</body>
     </html>
   );
 }

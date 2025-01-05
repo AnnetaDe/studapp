@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AuthForm from '../AuthForm';
 
 // import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <div>login</div>;
+  return <AuthForm />;
 }

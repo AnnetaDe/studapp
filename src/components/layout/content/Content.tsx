@@ -1,11 +1,7 @@
-import { Header } from '../header/Header';
-import type { PropsWithChildren } from 'react';
+interface ContentProps {
+  children: React.ReactNode;
+}
 
-export default function Content({ children }: PropsWithChildren<unknown>) {
-  return (
-    <main className="content col-span-4">
-      <Header />
-      {children}
-    </main>
-  );
+export default function Content({ children }: ContentProps) {
+  return <div className="content">{children}</div>;
 }

@@ -15,10 +15,12 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-unused-expressions': [
         'warn',
+        
         {
           allowShortCircuit: true,
           allowTernary: true,
           allowTaggedTemplates: true,
+          
         },
       ],
       

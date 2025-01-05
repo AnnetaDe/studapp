@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <div>dash</div>;
+  return <div>dashPage</div>;
 }
