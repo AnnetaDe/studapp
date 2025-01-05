@@ -11,13 +11,17 @@ interface Props {
 }
 
 export default function TestGenerated({ data }: Props) {
-  const { handleSubmit, control,watch,getValues } = useForm();
+  const { handleSubmit, control,watch,getValues, reset } = useForm();
   const onSubmit = (formData: Record<string, string | number>) => {
     const submissionData = {
       test_id: data.test_id,
       selected_answers: Object.values(formData).map(Number),
     };
-  console.log(submissionData);
+    
+    
+    console.log(submissionData);
+    return submissionData
+    reset();
   };
 
   const levelLabels: { [key in LevelEnum]: string } = {
@@ -30,10 +34,6 @@ export default function TestGenerated({ data }: Props) {
 
 console.log(watch());
 console.log(getValues());
-
-
-
-
 
   return (
     <form className="test-generated col-span-3 row-span-1 max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"

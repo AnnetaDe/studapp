@@ -3,7 +3,6 @@ import React from 'react';
 
 interface Props {
   item: IQuestionItemNoAnswer;
-  // checked_answer: boolean;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   question_index: number;
   selectedValue: number;
@@ -23,7 +22,7 @@ export default function QuestionItemNoAnswer({
         </div>
         {Object.entries(item.choices).map(([key, value]) => (
           <label
-            key={`${question_index}-${key}`}
+            key={key}
             htmlFor={`choice-${question_index}-${key}`}
             className=" flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-3 transition hover:bg-gray-50 has-[:checked]:bg-indigo-300 mb-3"
           >
@@ -31,8 +30,8 @@ export default function QuestionItemNoAnswer({
               &#8203;
               <input
                 className=" size-4 rounded border-gray-300"
-                type="checkbox"
-                value={Number(key)}
+                type="radio"
+                value={key}
                 onChange={handleChange}
                 id={`choice-${question_index}-${key}`}
                 checked={selectedValue === Number(key)}
