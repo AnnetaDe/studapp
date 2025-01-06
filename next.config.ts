@@ -4,11 +4,12 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   poweredByHeader: false,
+
   async rewrites() {
     return [
       {
         source: '/:path*',
-        destination: `${process.env.SERVER_URL}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
     ];
   },

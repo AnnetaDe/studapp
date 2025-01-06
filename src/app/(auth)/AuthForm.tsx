@@ -1,34 +1,108 @@
-export default function AuthForm() {
+'use client';
+import { authService } from '@/services/auth.service';
+import type { IAuthFormData } from '@/services/auth.service';
+import { Button } from '@/ui/Button/Button';
+import { Field } from '@/ui/field/Field';
+import { useMutation } from '@tanstack/react-query';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+
+interface AuthFormProps {
+  isLogin: boolean;
+}
+
+export default function AuthForm({ isLogin }: AuthFormProps) {
+  const { register, handleSubmit } = useForm<IAuthFormData>();
+  const router = useRouter();
+
+  const mutationLogin = useMutation({
+    mutationFn: (data: IAuthFormData) => authService.login(data),
+    onSuccess: () => {
+      router.push('/dashboard');
+    },
+  });
+
+  const mutationRegister = useMutation({
+    mutationFn: (data: IAuthFormData) => authService.register(data),
+    onSuccess: () => {
+      router.push('/dashboard');
+    },
+  });
+
+  const onSubmit = (data: IAuthFormData) => {
+    if (isLogin) {
+      mutationLogin.mutate(data);
+    } else {
+      mutationRegister.mutate(data);
+    }
+  };
+
   return (
-    <div>
-      <form>
-        <div>
-          <label className="block mb-2 text-indigo-500" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
-            type="text"
-            name="username"
-          />
-        </div>
-        <div>
-          <label className="block mb-2 text-indigo-500" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
-            type="password"
-            name="password"
-          />
-        </div>
-        <div>
-          <input
-            className="w-full bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded"
-            type="submit"
-          />
-        </div>
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full max-w-sm mx-auto shadow-md rounded px-8 pt-6 pb-8 bg-gray-700 flex flex-col mt-10"
+    >
+      {!isLogin && (
+        <Field
+          extraStyles="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500 mb-4"
+          label="Name"
+          type="text"
+          placeholder="Your name: "
+          {...register('name', { required: true })}
+        />
+      )}
+      <Field
+        extraStyles="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500 mb-4"
+        label="e-mail"
+        type="email"
+        placeholder="Your email: "
+        {...register('username', { required: true })}
+      />
+      <Field
+        extraStyles="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500 mb-4"
+        label="password"
+        type="password"
+        placeholder="Enter password: "
+        {...register('password', { required: true })}
+      />
+      {isLogin && (
+        <Button
+          type="submit"
+          variant={'login'}
+          extraStyles={
+            'mb-4, rounded bg-blue-500 transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400'
+          }
+        >
+          Login
+        </Button>
+      )}
+      {!isLogin && (
+        <Button
+          type="submit"
+          variant={'register'}
+          extraStyles={
+            'mb-4 rounded bg-blue-500 transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400'
+          }
+        >
+          Register
+        </Button>
+      )}
+      {isLogin ? (
+        <Link
+          href={'/register'}
+          className="transform text-center font-semibold text-gray-500 duration-300 hover:text-gray-300"
+        >
+          Dont have account? Register{' '}
+        </Link>
+      ) : (
+        <Link
+          href={'/login'}
+          className="transform text-center font-semibold text-gray-500 duration-300 hover:text-gray-300"
+        >
+          Already have account? Login
+        </Link>
+      )}
+    </form>
   );
 }

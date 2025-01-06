@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export function SideBarHeader() {
   return (
-    <div className="flex gap-4 px-4 py-4 items-center">
+    <div className="flex gap-4 px-4 py-4 items-center h-16">
       <button>
         <FontAwesomeIcon icon={faNavicon} fontSize={26} />
       </button>

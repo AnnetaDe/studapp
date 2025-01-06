@@ -1,13 +1,6 @@
-import type { ISidebarNavItem, ISideBarSettingsItem } from './sidebar.types';
+import type { ISidebarNavItem } from './sidebar.types';
 import { STUDENT_PAGE_config } from '@/config/public.config';
-import {
-  faBrain,
-  faCalendar,
-  faCompass,
-  faGear,
-  faRocket,
-  faTrophy,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBrain, faCompass, faRocket, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 export const SIDEBAR_DATA: ISidebarNavItem[] = [
   {
@@ -28,12 +21,7 @@ export const SIDEBAR_DATA: ISidebarNavItem[] = [
     link: STUDENT_PAGE_config.AWARDS,
     isBottomBorder: false,
   },
-  {
-    icon: faCalendar,
-    label: 'Schedule',
-    link: STUDENT_PAGE_config.SCHEDULE,
-    isBottomBorder: false,
-  },
+
   {
     icon: faBrain,
     label: 'Tests',
@@ -41,9 +29,3 @@ export const SIDEBAR_DATA: ISidebarNavItem[] = [
     isBottomBorder: true,
   },
 ];
-
-export const SIDEBAR_SETTINGS: ISideBarSettingsItem = {
-  icon: faGear,
-  label: 'Settings',
-  link: STUDENT_PAGE_config.SETTINGS,
-};

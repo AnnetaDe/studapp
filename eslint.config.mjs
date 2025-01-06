@@ -10,22 +10,27 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  ...compat.config({
+    extends: ['next', 'prettier'],
+  }),
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
       '@typescript-eslint/no-unused-expressions': [
         'warn',
-        
+
         {
           allowShortCircuit: true,
           allowTernary: true,
           allowTaggedTemplates: true,
-          
+        },
+        {
+          rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+          },
         },
       ],
-      
     },
-    
   },
 ];
 

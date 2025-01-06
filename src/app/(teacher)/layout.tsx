@@ -1,8 +1,6 @@
 import React from 'react';
-import Content from '@/components/layout/content/Content';
-import { Header } from '@/components/layout/header/Header';
-import { Sidebar } from '@/components/layout/sidebar/SideBar';
 import LayoutU from '@/components/layout/LayoutU';
+// import ProtectedRoute from '@/routes/protected';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,8 +9,9 @@ interface LayoutProps {
 export default function TeacherLayout({ children }: LayoutProps) {
   return (
     <div className="teacher-layout">
-      <Header />
+      {/* <ProtectedRoute> */}
       <LayoutU>{children}</LayoutU>
+      {/* </ProtectedRoute> */}
     </div>
   );
 }

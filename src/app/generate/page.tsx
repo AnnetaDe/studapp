@@ -1,3 +1,4 @@
+import FormGenerate from '@/ui/formGenerate/FormGenerate';
 import TestGenerated from '@/ui/testGenerated/TestGenerated';
 import type { Metadata } from 'next';
 
@@ -43,5 +44,10 @@ const data = {
 };
 
 export default function Page() {
-  return <TestGenerated data={data} />;
+  return (
+    <div>
+      <FormGenerate />
+      <TestGenerated data={data} />
+    </div>
+  );
 }

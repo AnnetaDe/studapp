@@ -1,9 +1,9 @@
-import type { ISideBarTeacher } from '../sidebar.types';
+import type { ISideBarTeacherItem } from '../sidebar.types';
 import TeacherItem from './TeacherItem';
 
 interface TeacherMenuProps {
   title?: string;
-  menu: ISideBarTeacher[];
+  menu: ISideBarTeacherItem[];
 }
 
 export default function TeacherMenu({ title, menu }: TeacherMenuProps) {

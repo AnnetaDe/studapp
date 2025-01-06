@@ -14,3 +14,9 @@ export enum LevelEnum {
   INTERMEDIATE = 3,
   DIFFICULT = 4,
 }
+
+export interface ITestRequest {
+  level: LevelEnum;
+  subject: string;
+  count: number;
+}

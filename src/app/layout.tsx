@@ -1,9 +1,9 @@
 import './globals.scss';
-import LayoutU from '@/components/layout/LayoutU';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
+import { Providers } from './Providers';
 
 config.autoAddCss = false;
 
@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto.variable} ${noto.variable} antialiased`}>{children}</body>
+      <body className={`${noto.variable} ${noto.variable} antialiased`}>
+        Providers Layout
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

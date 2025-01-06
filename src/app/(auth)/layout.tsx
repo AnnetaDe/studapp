@@ -1,13 +1,5 @@
-import React from 'react';
+import type { PropsWithChildren } from 'react';
 
-interface AuthLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function AuthLayout({ children }: AuthLayoutProps) {
-  return (
-    <div className="auth-layout">
-      <main>{children}</main>
-    </div>
-  );
+export default async function Layout({ children }: PropsWithChildren<unknown>) {
+  return <div className="layout-login-register">{children}</div>;
 }
