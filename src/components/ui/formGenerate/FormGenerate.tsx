@@ -5,14 +5,16 @@ import { testService } from '../../../services/test.service';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../Button/Button';
 
-export interface ITestRequest {
+interface FormData {
   subject: string;
   level: number;
   count: number;
 }
-type FormData = ITestRequest;
+interface Props {
+  generate: (data: FormData) => void;
+}
 
-const FormGenerate = () => {
+const FormGenerate = ({ generate }: Props) => {
   const { register, handleSubmit, control } = useForm<FormData>({
     defaultValues: {
       subject: '',
@@ -20,15 +22,9 @@ const FormGenerate = () => {
       count: 0,
     },
   });
-  const mutationGenerate = useMutation({
-    mutationKey: ['generate'],
-    mutationFn: (data: FormData) => testService.generateTest(data),
-    onSuccess: () => console.log('success'),
-  });
+
   const onSubmit = (data: FormData) => {
-    const { subject, level, count } = data;
-    console.log(data);
-    mutationGenerate.mutate({ subject, level, count });
+    generate(data);
   };
 
   return (
@@ -69,8 +65,11 @@ const FormGenerate = () => {
         <div className="col-span-1">
           <input
             type="number"
-            max={25}
-            min={1}
+            {...register('count', {
+              required: 'Count is required',
+              min: { value: 1, message: 'Minimum value is 1' },
+              max: { value: 25, message: 'Maximum value is 25' },
+            })}
             className=" border w-full border-gray-200 rounded-sm p-1 focus:outline-none focus:ring-2 focus:ring-teal-500"
             placeholder="Count"
             {...register('count')}

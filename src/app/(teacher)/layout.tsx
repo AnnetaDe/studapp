@@ -1,6 +1,6 @@
 import React from 'react';
 import LayoutU from '@/components/layout/LayoutU';
-// import ProtectedRoute from '@/routes/protected';
+
 
 interface LayoutProps {
   children: React.ReactNode;

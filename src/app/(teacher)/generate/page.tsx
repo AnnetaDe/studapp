@@ -1,10 +1,13 @@
+'use client';
+import { testService } from '@/services/test.service';
 import FormGenerate from '@/ui/formGenerate/FormGenerate';
+import type { ITestResponse } from '@/ui/testGenerated/test.types';
 import TestGenerated from '@/ui/testGenerated/TestGenerated';
+import { useMutation } from '@tanstack/react-query';
 import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: '',
-};
+import { useRef, useState } from 'react';
+import type { ITestRequest } from './../../../components/ui/testGenerated/test.types';
+import { authService } from '@/services/auth.service';
 
 const data = {
   test_id: '7e1fa80c-51dc-41be-957e-d84f19f5a152',
@@ -44,9 +47,19 @@ const data = {
 };
 
 export default function Page() {
+  const [generatedData, setGeneratedData] = useState(null);
+  const ref = useRef(null);
+  const mutationGenerate = useMutation({
+    mutationKey: ['generate'],
+    mutationFn: (data: ITestRequest) => testService.generateTest(data),
+    onSuccess: () => console.log('success'),
+  });
+  const handleGenerate = (data: ITestRequest) => {
+    mutationGenerate.mutate(data);
+  };
   return (
     <div>
-      <FormGenerate />
+      <FormGenerate generate={handleGenerate} />
       <TestGenerated data={data} />
     </div>
   );
