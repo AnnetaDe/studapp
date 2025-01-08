@@ -6,7 +6,6 @@ export function Sidebar() {
   return (
     <aside className="sidebar bg-gray-500 h-screen ">
       <SideBarHeader />
-
       <SideMenu menu={SIDEBAR_DATA} />
     </aside>
   );

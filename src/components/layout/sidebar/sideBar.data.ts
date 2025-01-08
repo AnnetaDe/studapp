@@ -1,5 +1,5 @@
 import type { ISidebarNavItem } from './sidebar.types';
-import { STUDENT_PAGE_config } from '@/config/public.config';
+import { PUBLIC_PAGE_CONFIG, STUDENT_PAGE_config } from '@/config/public.config';
 import { faBrain, faCompass, faRocket, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 export const SIDEBAR_DATA: ISidebarNavItem[] = [
@@ -12,13 +12,13 @@ export const SIDEBAR_DATA: ISidebarNavItem[] = [
   {
     icon: faCompass,
     label: 'Explore',
-    link: STUDENT_PAGE_config.EXPLORE,
+    link: PUBLIC_PAGE_CONFIG.EXPLORE,
     isBottomBorder: false,
   },
   {
     icon: faTrophy,
     label: 'Awards',
-    link: STUDENT_PAGE_config.AWARDS,
+    link: PUBLIC_PAGE_CONFIG.AWARDS,
     isBottomBorder: false,
   },
 

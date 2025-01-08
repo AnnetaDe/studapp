@@ -1,9 +1,12 @@
 'use client';
-import SelectLevel from './SelectLevel';
-import { useMutation } from '@tanstack/react-query';
-import { testService } from '../../../services/test.service';
+// import SelectLevel from './SelectLevel';
+
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../Button/Button';
+import dynamic from 'next/dynamic';
+
+const SelectLevel = React.lazy(() => import('@/ui/formGenerate/SelectLevel'));
 
 interface FormData {
   subject: string;
@@ -24,6 +27,7 @@ const FormGenerate = ({ generate }: Props) => {
   });
 
   const onSubmit = (data: FormData) => {
+
     generate(data);
   };
 
@@ -78,6 +82,6 @@ const FormGenerate = ({ generate }: Props) => {
       </form>
     </div>
   );
-};
+};;
 
 export default FormGenerate;

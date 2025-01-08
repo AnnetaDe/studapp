@@ -7,26 +7,32 @@ import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useUserContext } from '../UserProvider';
 
-interface AuthFormProps {
+interface AuthProps {
   isLogin: boolean;
 }
 
-export default function AuthForm({ isLogin }: AuthFormProps) {
-  const { register, handleSubmit } = useForm<IAuthFormData>();
+export default function Auth({ isLogin }: AuthProps) {
+  const { register, handleSubmit, reset } = useForm<IAuthFormData>();
   const router = useRouter();
+  const { setUser } = useUserContext();
 
   const mutationLogin = useMutation({
     mutationFn: (data: IAuthFormData) => authService.login(data),
-    onSuccess: () => {
-      router.push('/dashboard');
+    onSuccess: data => {
+      router.push('/');
+      setUser(data);
+      reset();
     },
   });
 
   const mutationRegister = useMutation({
     mutationFn: (data: IAuthFormData) => authService.register(data),
-    onSuccess: () => {
-      router.push('/dashboard');
+    onSuccess: data => {
+      router.push('/');
+      setUser(data);
+      reset();
     },
   });
 

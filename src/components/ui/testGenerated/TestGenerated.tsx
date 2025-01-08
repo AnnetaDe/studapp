@@ -1,27 +1,50 @@
 'use client';
 import QuestionItemNoAnswer from '../question/QuestionItem';
 import type { IQuestionItemNoAnswer } from '../question/question.types';
-import { LevelEnum, type ITestResponse } from './test.types';
+import { LevelEnum, type ITestResponse, type ITestSubmit } from './test.types';
 import { useForm, Controller } from "react-hook-form";
 
 import React from 'react';
+import { useUserContext } from '@/app/UserProvider';
 
-interface Props {
-  data: ITestResponse;
+
+interface FormData {
+  test_id: string;
+  selected_answers: number[];
+  user_id: string;
 }
 
-export default function TestGenerated({ data }: Props) {
+interface Props {
+  data: ITestResponse | null;
+  submit: (data: FormData) => void;
+  user_id: string;
+
+  }
+
+
+function TestGenerated({ data, submit, user_id }: Props) {
+  console.log(data);
+  const user = useUserContext();
+
+  
+  if (!data) {
+    return null;
+  }
+
  
 
   const { handleSubmit, control, reset } = useForm();
-  const onSubmit = (formData: Record<string, string | number>) => {
+   const onSubmit = (formData: Record<string, string | number>) => {
     const submissionData = {
       test_id: data.test_id,
       selected_answers: Object.values(formData).map(Number),
-    };
-    console.log(submissionData);
-    reset()
+      user_id:user_id
+     };
+      submit(submissionData);
+     console.log(submissionData);
+     
   };
+ 
 
   const levelLabels: { [key in LevelEnum]: string } = {
     [LevelEnum.EASY]: "EASY",
@@ -39,7 +62,7 @@ export default function TestGenerated({ data }: Props) {
         <span className='p-1 border rounded-sm'>{levelLabel}</span>
       </div>
       <ol>
-        {data.tests.map((test: IQuestionItemNoAnswer, idx: number) => {
+        {data.test_data.map((test: IQuestionItemNoAnswer, idx: number) => {
           return (
             <Controller
               name={`question-${idx}`}
@@ -70,3 +93,4 @@ export default function TestGenerated({ data }: Props) {
     </form>
   );
 }
+export default TestGenerated;

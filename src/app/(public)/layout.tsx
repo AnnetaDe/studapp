@@ -2,5 +2,5 @@ import LayoutU from '@/components/layout/LayoutU';
 import type { PropsWithChildren } from 'react';
 
 export default function PublicLayout({ children }: PropsWithChildren<unknown>) {
-  return <LayoutU>{children}publicLay</LayoutU>;
+  return <LayoutU>{children}</LayoutU>;
 }

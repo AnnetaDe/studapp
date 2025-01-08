@@ -1,5 +1,7 @@
 import { axiosAuth, axiosNoAuth } from '@/api/axios';
 import { API_ENDPOINTS } from '@/api/endpoints';
+import type { Axios, AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
 
 export interface IAuthFormData {
   username: string;
@@ -8,32 +10,62 @@ export interface IAuthFormData {
 }
 
 class AuthService {
-  async login(data: IAuthFormData) {
-    const formData: URLSearchParams = new URLSearchParams();
-    formData.append('username', data.username);
-    formData.append('password', data.password);
-    const response = await axiosNoAuth.post(API_ENDPOINTS.LOGIN, formData);
-    return response;
+  async login(data: IAuthFormData): Promise<AxiosResponse> {
+    try {
+      const formData: URLSearchParams = new URLSearchParams();
+      formData.append('username', data.username);
+      formData.append('password', data.password);
+      const response = await axiosNoAuth.post(API_ENDPOINTS.LOGIN, formData);
+      console.log('response', response);
+      const refresh_token = response.data.refresh_token;
+      localStorage.setItem('refresh_token', refresh_token);
+      return response;
+    } catch (error) {
+      console.error('Error fetching login:', error);
+      throw error;
+    }
   }
 
   async register(data: IAuthFormData) {
-    const rdata = {
-      username: data.username,
-      password: data.password,
-      name: data.name,
-    };
-
-    return axiosNoAuth.post(API_ENDPOINTS.REGISTER, rdata);
+    try {
+      const rdata = {
+        username: data.username,
+        password: data.password,
+        name: data.name,
+      };
+      return axiosNoAuth.post(API_ENDPOINTS.REGISTER, rdata);
+    } catch (error) {
+      console.error('Error fetching register:', error);
+      throw error;
+    }
   }
 
   async logout() {
     return axiosAuth.post(API_ENDPOINTS.LOGOUT);
   }
   async refresh() {
-    return axiosAuth.post(API_ENDPOINTS.REFRESH);
+    try {
+      console.log('refreshing');
+      return axiosAuth.post(API_ENDPOINTS.REFRESH);
+    } catch (error) {
+      console.error('Error fetching refresh:', error);
+      throw error;
+    }
   }
   async profile() {
-    return axiosAuth.get(API_ENDPOINTS.PROFILE);
+    try {
+      const response = await axiosAuth.get(API_ENDPOINTS.PROFILE);
+      return response.data;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error fetching profile:', (error as any).response?.data || error.message);
+      } else {
+        console.error('Error fetching profile:', error);
+      }
+      throw error;
+    }
   }
 }
+
+
 export const authService = new AuthService();

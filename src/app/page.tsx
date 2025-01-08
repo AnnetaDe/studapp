@@ -1,14 +1,16 @@
-import { axiosNoAuth } from "@/api/axios";
-import axios from "axios";
+import type { Metadata } from 'next';
+import PublicLayout from './(public)/layout';
 
-export const exploreTests = async () => {
-    const data= await axiosNoAuth.get('/')
+export const metadata: Metadata = {
+  title: '',
+};
 
+export default function Page() {
+  const children = <div>HOME child</div>;
 
-export default function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <PublicLayout children={children} />
     </div>
   );
 }

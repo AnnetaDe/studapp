@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import { Providers } from './Providers';
+import { UserProvider } from './UserProvider';
 
 config.autoAddCss = false;
 
@@ -26,7 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${noto.variable} ${noto.variable} antialiased`}>
         Providers Layout
-        <Providers>{children}</Providers>
+        <UserProvider>
+          <Providers>{children}</Providers>
+        </UserProvider>
       </body>
     </html>
   );
