@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import DashBoard from './DashBoard';
+import { DashBoard } from './DashBoard';
 
 export const metadata: Metadata = {
   title: '',

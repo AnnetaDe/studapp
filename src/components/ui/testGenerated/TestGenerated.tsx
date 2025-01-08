@@ -31,8 +31,6 @@ function TestGenerated({ data, submit, user_id }: Props) {
     return null;
   }
 
- 
-
   const { handleSubmit, control, reset } = useForm();
    const onSubmit = (formData: Record<string, string | number>) => {
     const submissionData = {

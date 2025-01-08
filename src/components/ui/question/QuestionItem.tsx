@@ -2,8 +2,11 @@ import type { IQuestionItemNoAnswer } from './question.types';
 import React from 'react';
 
 interface Props {
-  item: IQuestionItemNoAnswer;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  item: {
+    question: string;
+    choices: { [key: string]: string };
+  };
+  handleChange: (value: number) => void;
   question_index: number;
   selectedValue: number;
 }
@@ -32,7 +35,7 @@ export default function QuestionItemNoAnswer({
                 className=" size-4 rounded border-gray-300"
                 type="radio"
                 value={key}
-                onChange={handleChange}
+                onChange={() => handleChange(Number(key))}
                 id={`choice-${question_index}-${key}`}
                 checked={selectedValue === Number(key)}
               />

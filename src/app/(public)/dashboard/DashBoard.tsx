@@ -6,9 +6,9 @@ import { useState } from 'react';
 import { testService } from '../../../services/test.service';
 import Link from 'next/link';
 
-export default function DashBoard() {
-  const { user, loading } = useUserContext();
-  if (!user) {
+export const DashBoard: React.FC = () => {
+  const { userId } = useUserContext();
+  if (!userId) {
     return (
       <div className="m-4">
         <p>Please login to see your progress...</p>
@@ -16,16 +16,16 @@ export default function DashBoard() {
       </div>
     );
   }
-  console.log('user', user);
-  const user_id = user.data.user._id;
+  console.log('user', userId);
+
   const { data, error, isLoading } = useQuery({
     queryKey: ['performance'],
-    queryFn: () => testService.performance({ user_id }),
-    enabled: !!user,
+    queryFn: () => testService.performance({ user_id: userId }),
+    enabled: !!userId,
   });
 
   if (isLoading) return <div>Loading dashboard...</div>;
   if (error) return <div>Opps!... {error.message}</div>;
 
   return <div className="m-4">DashBoard</div>;
-}
+};

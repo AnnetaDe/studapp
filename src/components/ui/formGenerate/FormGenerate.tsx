@@ -27,7 +27,6 @@ const FormGenerate = ({ generate }: Props) => {
   });
 
   const onSubmit = (data: FormData) => {
-
     generate(data);
   };
 

@@ -16,13 +16,15 @@ interface AuthProps {
 export default function Auth({ isLogin }: AuthProps) {
   const { register, handleSubmit, reset } = useForm<IAuthFormData>();
   const router = useRouter();
-  const { setUser } = useUserContext();
+  const { setUserId } = useUserContext();
+  const { setUserBoard } = useUserContext();
 
   const mutationLogin = useMutation({
     mutationFn: (data: IAuthFormData) => authService.login(data),
     onSuccess: data => {
       router.push('/');
-      setUser(data);
+      setUserId(data);
+      setUserBoard(data);
       reset();
     },
   });
@@ -30,8 +32,8 @@ export default function Auth({ isLogin }: AuthProps) {
   const mutationRegister = useMutation({
     mutationFn: (data: IAuthFormData) => authService.register(data),
     onSuccess: data => {
-      router.push('/');
-      setUser(data);
+      router.push('/login');
+
       reset();
     },
   });

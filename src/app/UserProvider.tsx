@@ -1,8 +1,10 @@
 'use client';
 import React, { createContext, useContext, useState } from 'react';
 interface UserContextType {
-  user: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
+  userId: any;
+  setUserId: React.Dispatch<React.SetStateAction<any>>;
+  userBoard: any;
+  setUserBoard: React.Dispatch<React.SetStateAction<any>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -15,11 +17,14 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [userBoard, setUserBoard] = useState(null);
   const [loading, setLoading] = useState(true);
 
   return (
-    <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
+    <UserContext.Provider
+      value={{ userId, setUserId, userBoard, setUserBoard, loading, setLoading }}
+    >
       {children}
     </UserContext.Provider>
   );
