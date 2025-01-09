@@ -28,11 +28,11 @@ class TestService {
     });
     return response;
   }
-  performance(params: { user_id: string }) {
+  performance(userId: string) {
     const response = axiosAuth({
       url: '/test/performance',
       method: 'get',
-      params: params,
+      params: { user_id: userId },
     });
     return response;
   }

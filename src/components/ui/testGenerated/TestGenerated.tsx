@@ -11,13 +11,13 @@ import { useUserContext } from '@/app/UserProvider';
 interface FormData {
   test_id: string;
   selected_answers: number[];
-  user_id: string;
+  user_id?: string;
 }
 
 interface Props {
   data: ITestResponse | null;
   submit: (data: FormData) => void;
-  user_id: string;
+  user_id?: string;
 
   }
 

@@ -23,8 +23,9 @@ export default function Auth({ isLogin }: AuthProps) {
     mutationFn: (data: IAuthFormData) => authService.login(data),
     onSuccess: data => {
       router.push('/');
-      setUserId(data);
-      setUserBoard(data);
+      console.log();
+      setUserId(data.data.user._id);
+      setUserBoard(data.data.user.performance);
       reset();
     },
   });
@@ -33,7 +34,6 @@ export default function Auth({ isLogin }: AuthProps) {
     mutationFn: (data: IAuthFormData) => authService.register(data),
     onSuccess: data => {
       router.push('/login');
-
       reset();
     },
   });

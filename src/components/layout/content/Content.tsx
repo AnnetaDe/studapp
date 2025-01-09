@@ -7,7 +7,7 @@ interface ContentProps {
 export default function Content({ children }: ContentProps) {
   return (
     <div className="content  bg-gray-200 col-span-4 ">
-      <Header />
+      {/* <Header /> */}
       {children}
     </div>
   );

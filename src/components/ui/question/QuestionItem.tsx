@@ -1,4 +1,4 @@
-import type { IQuestionItemNoAnswer } from './question.types';
+'use client';
 import React from 'react';
 
 interface Props {
@@ -49,4 +49,3 @@ export default function QuestionItemNoAnswer({
     </li>
   );
 }
-

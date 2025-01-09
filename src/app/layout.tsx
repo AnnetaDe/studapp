@@ -25,8 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto.variable} ${noto.variable} antialiased`}>
-        Providers Layout
+      <body
+        className={`${noto.variable} ${noto.variable} antialiased h-[100dvh] overflow-hidden mx-auto block`}
+      >
         <UserProvider>
           <Providers>{children}</Providers>
         </UserProvider>

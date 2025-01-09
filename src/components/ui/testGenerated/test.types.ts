@@ -22,9 +22,9 @@ export interface ITestRequest {
 }
 
 export interface ITestSubmit {
+  user_id?: string;
   test_id: string;
   selected_answers: number[];
-  user_id: string;
 }
 
 export interface SubmitReturn {
