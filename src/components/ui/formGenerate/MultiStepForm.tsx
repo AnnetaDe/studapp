@@ -143,10 +143,10 @@ export const MultiStepForm = () => {
   const levelLabel = levelLabels[generatedQuestions.level as LevelEnum];
 
   return (
-    <>
+    <div className="px-2 py-8">
       MultiStepForm
       {step == 1 && (
-        <div className="p-2 bg-white rounded-lg space-y-4 max-w-sm mx-auto">
+        <div className=" bg-white rounded-lg max-w-sm mx-auto space-y-2">
           <form
             onSubmit={handleSubmit(data => onSubmitRequirements(data.step1))}
             autoComplete="off"
@@ -281,6 +281,6 @@ export const MultiStepForm = () => {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 };

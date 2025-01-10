@@ -18,7 +18,7 @@ export default function LayoutU({ children }: LayoutUProps) {
     <div
       className={`h-screen grid${
         isOpened ? 'grid-cols-[200px_1fr]' : 'grid-cols-[0_1fr]'
-      } h-dvr relative transition-all duration-300`}
+      }  relative transition-all duration-300`}
     >
       <Sidebar isOpened={isOpened} />
 
@@ -26,10 +26,10 @@ export default function LayoutU({ children }: LayoutUProps) {
         toggle={toggleSidebar}
         isOpen={isOpened}
       />
-      <Content>{children}</Content>
+      <Content isOpened={isOpened}>{children}</Content>
 
-      <footer className="w-screen text-white p-2 text-right mx-auto   fixed bottom-0">
-        &copy; 2021 All rights reserved
+      <footer className="w-screen bg-slate-700 text-gray-700 p-2 text-right mx-auto   fixed bottom-0">
+        &copy;
       </footer>
     </div>
   );

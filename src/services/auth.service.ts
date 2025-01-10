@@ -1,7 +1,8 @@
 import { axiosAuth, axiosNoAuth } from '@/api/axios';
 import { API_ENDPOINTS } from '@/api/endpoints';
-import type { Axios, AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
+
 
 export interface IAuthFormData {
   username: string;
@@ -16,9 +17,9 @@ class AuthService {
       formData.append('username', data.username);
       formData.append('password', data.password);
       const response = await axiosNoAuth.post(API_ENDPOINTS.LOGIN, formData);
-
       console.log('response', response);
       const refresh_token = response.data.refresh_token;
+      
       localStorage.setItem('refresh_token', refresh_token);
 
       return response;
@@ -43,12 +44,17 @@ class AuthService {
   }
 
   async logout() {
+    
+    localStorage.removeItem('refresh_token');
+    
+    
     return axiosAuth.post(API_ENDPOINTS.LOGOUT);
   }
   async refresh() {
     try {
-      console.log('refreshing');
-      return axiosAuth.post(API_ENDPOINTS.REFRESH);
+      const refresh_token = localStorage.getItem('refresh_token');
+      console.log('refresh_token', refresh_token);
+      return axiosNoAuth.post(API_ENDPOINTS.REFRESH);
     } catch (error) {
       console.error('Error fetching refresh:', error);
       throw error;
