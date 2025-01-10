@@ -6,13 +6,13 @@ interface Props {
   item: ISidebarNavItem;
   isActive?: boolean;
 }
-export function MenuItem({ item, isActive = false }: Props) {
+export function MenuItem({ item, isActive }: Props) {
   return (
-    <li className="mb-1">
+    <li className="mb-1 rounded-md">
       <Link
         href={item.link}
         className={`flex items-center gap-2 bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-300 hover:text-gray-900 ${
-          isActive ? 'text-gray-900' : 'text-gray-600'
+          isActive ? 'bg-pink-600' : 'text-gray-600'
         }`}
       >
         <FontAwesomeIcon

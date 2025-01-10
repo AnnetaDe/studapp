@@ -8,7 +8,6 @@ const axiosAuthOptions: CreateAxiosDefaults = {
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
   },
 };
 
@@ -18,3 +17,16 @@ const axiosOptions: CreateAxiosDefaults = {
 
 export const axiosNoAuth = axios.create(axiosOptions);
 export const axiosAuth = axios.create(axiosAuthOptions);
+
+axiosAuth.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('accsess_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);

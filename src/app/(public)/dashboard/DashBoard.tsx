@@ -8,6 +8,7 @@ import React from 'react';
 
 export const DashBoard: React.FC = () => {
   const { userId } = useUserContext();
+  const [isUser, setIsUser] = React.useState(false);
   if (!userId) {
     return (
       <div className="m-4">
@@ -29,7 +30,7 @@ export const DashBoard: React.FC = () => {
   if (error) return <div>Opps!... {error.message}</div>;
 
   return (
-    <div className=" bg-white col-span-4  shadow-md mx-auto p-4 md:p-8 h-screen overflow-auto">
+    <div className=" bg-white mx-auto p-4 overflow-auto">
       <h1 className="text-xl font-bold mb-4">User Performance Dashboard</h1>
       <div className="mb-6">
         <h2 className="text-lg font-semibold">Summary</h2>

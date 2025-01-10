@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { authService } from './services/auth.service';
+// import { request } from 'http';
+import Cookies from 'js-cookie';
 
 export function middleware() {
   // retrieve the current response
@@ -25,8 +27,10 @@ export const config = {
 
 // export async function middleware(request: NextRequest) {
 //   // Extract tokens from cookies
-//   const refreshToken = authService.refresh;
-//   const accessToken = request.cookies.get('access_token')?.value;
+const refreshToken = authService.refresh;
+const accessToken = Cookies.get('access_token');
+console.log('accessToken', accessToken);
+// console.log('refreshToken', refreshToken);
 
 //   if (!accessToken) {
 //     // Attempt to fetch new tokens using the refresh token

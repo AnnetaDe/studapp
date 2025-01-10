@@ -56,7 +56,7 @@ const SelectLevel: React.FC<SelectLevelProps> = props => {
         options={selectableOptions}
         onChange={newValue => {
           if (newValue) {
-            props.onChange(((newValue as unknown) as IOption).value);
+            props.onChange((newValue as unknown as IOption).value);
           }
         }}
       />

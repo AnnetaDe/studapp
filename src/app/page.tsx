@@ -8,9 +8,5 @@ export const metadata: Metadata = {
 export default function Page() {
   const children = <div>HOME child</div>;
 
-  return (
-    <div>
-      <PublicLayout children={children} />
-    </div>
-  );
+  return <PublicLayout children={children} />;
 }

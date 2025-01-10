@@ -6,9 +6,8 @@ interface ContentProps {
 
 export default function Content({ children }: ContentProps) {
   return (
-    <div className="content  bg-gray-200 col-span-4 ">
-      {/* <Header /> */}
-      {children}
+    <div className="col-span-4 grid-cols-1 h-full ">
+      <div className="bg-blue-500 pt-20 pb-16 h-full">{children}</div>
     </div>
   );
 }

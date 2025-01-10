@@ -1,8 +1,15 @@
+'use client';
+import { authService } from '@/services/auth.service';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: '',
-};
 export default function Page() {
-  return <div>explore</div>;
+  const mytateProfile = {
+    mutationFn: () => authService.profile(),
+  };
+
+  const ShowProfile = () => {
+    mytateProfile.mutationFn();
+  };
+
+  return <button onClick={ShowProfile}>profile</button>;
 }

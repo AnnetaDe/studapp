@@ -16,9 +16,11 @@ class AuthService {
       formData.append('username', data.username);
       formData.append('password', data.password);
       const response = await axiosNoAuth.post(API_ENDPOINTS.LOGIN, formData);
+
       console.log('response', response);
       const refresh_token = response.data.refresh_token;
       localStorage.setItem('refresh_token', refresh_token);
+
       return response;
     } catch (error) {
       console.error('Error fetching login:', error);

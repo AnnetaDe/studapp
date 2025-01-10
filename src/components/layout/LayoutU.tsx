@@ -16,18 +16,21 @@ export default function LayoutU({ children }: LayoutUProps) {
 
   return (
     <div
-      className={`layout-u grid ${
-        isOpened ? 'grid-cols-[240px_1fr]' : 'grid-cols-[80px_1fr]'
-      } h-screen relative transition-all duration-300`}
+      className={`h-screen grid${
+        isOpened ? 'grid-cols-[200px_1fr]' : 'grid-cols-[0_1fr]'
+      } h-dvr relative transition-all duration-300`}
     >
-      <Sidebar
-        isOpened={isOpened}
+      <Sidebar isOpened={isOpened} />
+
+      <Header
         toggle={toggleSidebar}
+        isOpen={isOpened}
       />
-      <Content>
-        <Header toggle={toggleSidebar} />
-        {children}
-      </Content>
+      <Content>{children}</Content>
+
+      <footer className="w-screen text-white p-2 text-right mx-auto   fixed bottom-0">
+        &copy; 2021 All rights reserved
+      </footer>
     </div>
   );
 }

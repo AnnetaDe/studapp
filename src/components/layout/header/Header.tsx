@@ -9,8 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useState } from 'react';
+import { SideBarHeader } from '../sidebar/sideBarHeader/SideBarHeader';
+import { Button } from '@/ui/Button/Button';
+import { ButtonMenu } from '@/ui/Button/ButtonMenu';
 
-export function Header({ toggle }: { toggle: () => void }) {
+export function Header({ toggle, isOpen }: { toggle: () => void; isOpen: boolean }) {
   const mutateLogout = useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {
@@ -22,25 +25,24 @@ export function Header({ toggle }: { toggle: () => void }) {
   };
 
   return (
-    <header className="bg-slate-600 w-screen p-4 h-20">
+    <header className="bg-slate-600 w-screen px-2 py-2 h-14 fixed top-0 ">
       <div className="flex justify-between items-center">
-        <button
-          onClick={() => toggle()}
-          className="text-white text-lg p-2 "
-        >
-          <FontAwesomeIcon
-            icon={faNavicon}
-            fontSize={30}
+        <div className="flex items-center gap-2">
+          <ButtonMenu
+            toggle={toggle}
+            isOpen={isOpen}
           />
-        </button>
+
+          <SideBarHeader />
+        </div>
         <Link
-          className="p-2"
+          className=" flex bg-slate-700 rounded-full overflow-hidden items-center justify-center ring-0 ring-gray-300 w-[40px] h-[40px] transform transition-all hover:ring-8 focus:ring-4 ring-opacity-30 duration-200 shadow-md"
           href="/login"
           onClick={onLogOut}
         >
           <FontAwesomeIcon
             icon={faPersonRunning}
-            fontSize={30}
+            fontSize={28}
             color="white"
           />
         </Link>

@@ -1,12 +1,5 @@
-import { GenerateTest } from './GenerateTest';
-import { MultiStepForm } from './MultiStepForm';
+import { MultiStepForm } from '@/ui/formGenerate/MultiStepForm';
 
 export default function Page() {
-  return (
-    <div>
-      {/* <GenerateTest /> */}
-
-      <MultiStepForm />
-    </div>
-  );
+  return <MultiStepForm />;
 }

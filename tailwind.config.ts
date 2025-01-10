@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       colors: COLORS,
     },
+ 
   },
   plugins: [],
 };

@@ -6,9 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return (
-    <div>
-      <DashBoard />
-    </div>
-  );
+  return <DashBoard />;
 }

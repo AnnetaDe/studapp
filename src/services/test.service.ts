@@ -1,10 +1,11 @@
 import type { ITestRequest, ITestResponse, ITestSubmit } from '@/ui/testGenerated/test.types';
 import { axiosAuth } from '@/api/axios';
 import type { AxiosResponse } from 'axios';
+import { axiosNoAuth } from '../api/axios';
 
 class TestService {
   async generateTest(data: ITestRequest): Promise<AxiosResponse> {
-    const response = axiosAuth({
+    const response = axiosNoAuth({
       url: '/test/generate',
       method: 'post',
       data: data,
@@ -13,15 +14,15 @@ class TestService {
   }
 
   submit_answers(data: ITestSubmit): Promise<AxiosResponse> {
-    const response = axiosAuth({
-      url: '/test/submit-answers',
+    const response = axiosNoAuth({
+      url: '/test/submit',
       method: 'post',
       data: data,
     });
     return response;
   }
   history(params: { user_id: string }) {
-    const response = axiosAuth({
+    const response = axiosNoAuth({
       url: '/test/history',
       method: 'get',
       params: params,
@@ -29,7 +30,7 @@ class TestService {
     return response;
   }
   performance(userId: string) {
-    const response = axiosAuth({
+    const response = axiosNoAuth({
       url: '/test/performance',
       method: 'get',
       params: { user_id: userId },
