@@ -5,103 +5,106 @@ import { useQuery } from '@tanstack/react-query';
 import { testService } from '../../../services/test.service';
 import Link from 'next/link';
 import React from 'react';
+import { Summary } from '@/ui/dashboard/Summary';
+import { BySubject } from '@/ui/dashboard/BySubject';
+import { Polar } from './Polar';
+import { backgroundColors, borderColors, wrongAnswers } from './chartData';
+import { Loader } from '@/ui/loader/Loader';
+import { BySubjectAccordion } from '@/app/(public)/dashboard/BySubjectAccordion';
 
 export const DashBoard: React.FC = () => {
-  const { userId } = useUserContext();
-  const [isUser, setIsUser] = React.useState(false);
-  if (!userId) {
-    return (
-      <div className="m-4">
-        <p>Please login to see your progress...</p>
-        <Link href="/login">Login</Link>
-      </div>
-    );
-  }
-  console.log('user', userId);
+	const { userId } = useUserContext();
+	if (!userId) {
+		return (
+			<div className="m-4">
+				<p>Please login to see your progress...</p>
+				<Link href="/login">Login</Link>
+			</div>
+		);
+	}
+	console.log('user', userId);
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['performance', userId],
-    queryFn: () => testService.performance(userId),
-    enabled: !!userId,
-  });
-  console.log('data', data?.data.performance);
+	const { data, error, isLoading } = useQuery({
+		queryKey: ['performance', userId],
+		queryFn: () => testService.performance(userId),
+		enabled: !!userId,
+	});
 
-  if (isLoading) return <div>Loading dashboard...</div>;
-  if (error) return <div>Opps!... {error.message}</div>;
+	console.log('data', data?.data.performance);
 
-  return (
-    <div className=" bg-white mx-auto p-4 overflow-auto">
-      <h1 className="text-xl font-bold mb-4">User Performance Dashboard</h1>
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold">Summary</h2>
-        <ul className="list-none pl-5 flex gap-4">
-          <li>
-            Total Score:
-            <span className="ml-4 outline px-2">
-              {data ? data.data.performance.total_score : 'N/A'}
-            </span>
-          </li>
-          <li>
-            Total Questions:
-            <span className="ml-4 outline px-2">
-              {data ? data.data.performance.total_questions : 'N/A'}
-            </span>
-          </li>
-          <li>
-            Total Tests:
-            <span className="ml-4 outline px-2">
-              {data ? data.data.performance.total_tests : 'N/A'}
-            </span>
-          </li>
-        </ul>
-      </div>
+	const groupedData = data?.data.performance.tests.reduce((acc: any, test: any) => {
+		const topic = test.test_subject;
+		if (!acc[topic]) {
+			acc[topic] = {
+				totalQuestions: 0,
+				incorrectAnswers: 0,
+			};
+		}
+		acc[topic].totalQuestions += test.num_test_questions;
+		acc[topic].incorrectAnswers += test.num_test_questions - test.correct_answers;
+		return acc;
+	}, {});
 
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold">Top Subject</h2>
-        <table className="table-auto w-full border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Subject</th>
-              <th className="border border-gray-300 px-4 py-2">Tests</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(data ? data.data.performance.total_by_subj : 'N/A').map(
-              ([subject, count]) => (
-                <tr key={subject}>
-                  <td className="border border-gray-300 px-4 py-2">{subject}</td>
-                  <td className="border border-gray-300 px-4 py-2">{count as number}</td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-        <h2 className="text-lg font-semibold">Tests</h2>
-        <table className="table-auto w-full border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Subject</th>
-              <th className="border border-gray-300 px-4 py-2">Correct Answers</th>
-              <th className="border border-gray-300 px-4 py-2">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data &&
-              data.data.performance.tests.map(
-                (
-                  test: { test_subject: string; correct_answers: number; test_score: number },
-                  index: number
-                ) => (
-                  <tr key={index}>
-                    <td className="border border-gray-300 px-4 py-2">{test.test_subject}</td>
-                    <td className="border border-gray-300 px-4 py-2">{test.correct_answers}</td>
-                    <td className="border border-gray-300 px-4 py-2">{test.test_score}</td>
-                  </tr>
-                )
-              )}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+	const chartData = data
+		? {
+				labels: Object.keys(groupedData),
+
+				datasets: [
+					{
+						label: 'Total Questions',
+						data: Object.values(groupedData).map((topic: any) => topic.totalQuestions),
+						backgroundColor: Object.keys(groupedData).map(
+							(_, index) => backgroundColors[index % backgroundColors.length]
+						),
+						borderColor: Object.keys(groupedData).map(
+							(_, index) => borderColors[index % borderColors.length]
+						),
+
+						borderWidth: 2,
+					},
+					{
+						label: 'Incorrect Answers',
+						data: Object.values(groupedData).map((topic: any) => topic.incorrectAnswers),
+						backgroundColor: Object.keys(groupedData).map(
+							(_, index) => wrongAnswers[index % wrongAnswers.length]
+						),
+						borderColor: Object.keys(groupedData).map(
+							(_, index) => borderColors[index % borderColors.length]
+						),
+
+						borderWidth: 1,
+					},
+				],
+			}
+		: { label: 'Performance', datasets: [] };
+
+	if (isLoading) return <Loader />;
+	if (error) return <div>Opps!... {error.message}</div>;
+
+	return (
+		<div className="mx-auto overflow-auto bg-white p-4">
+			<h1 className="mb-4 text-xl font-bold">User Performance Dashboard</h1>
+
+			<Summary
+				total_score={data ? data.data.performance.total_score : 0}
+				total_questions={data ? data.data.performance.total_questions : 0}
+				total_tests={data ? data.data.performance.total_tests : 0}
+			/>
+			<div className="mb-6">
+				<BySubject
+					test_data={data ? data.data.performance.tests : []}
+					title_subject="Subject"
+					title_tests="Tests"
+					total_by_subj={data ? data.data.performance.total_by_subj : {}}
+				/>
+				<Polar chartdata={chartData} />
+
+				<h2 className="text-lg font-semibold">Tests</h2>
+				<BySubjectAccordion
+					user_id={userId}
+					data={data ? data : { data: { performance: { tests: [], total_by_subj: {} } } }}
+				/>
+			</div>
+		</div>
+	);
 };

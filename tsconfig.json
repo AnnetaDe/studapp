@@ -5,7 +5,7 @@
       "dom",
       "dom.iterable",
       "esnext",
-      "es6"
+      "es6",
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -40,7 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/ui/test-item/question.type"
+    "next.config.ts"
   ],
   "exclude": [
     "node_modules"

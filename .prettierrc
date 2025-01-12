@@ -1,6 +1,6 @@
 {
   "tabWidth": 2,
-  "useTabs": false,
+  "useTabs": true,
   "semi": true,
   "singleQuote": true,
   "trailingComma": "es5",
@@ -10,6 +10,8 @@
   "arrowParens": "avoid",
   "singleAttributePerLine": true,
   "printWidth": 100,
-  "proseWrap": "preserve"
-  
+  "proseWrap": "preserve",
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }

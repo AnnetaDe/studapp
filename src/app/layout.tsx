@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import { Providers } from './Providers';
 import { UserProvider } from './UserProvider';
-import { createContext } from 'vm';
+
 
 config.autoAddCss = false;
 
@@ -28,9 +28,11 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={`${noto.variable} ${noto.variable} antialiased `}>
-          <UserProvider>{children}</UserProvider>
+          <UserProvider>
+            {children}
+          </UserProvider>
         </body>
       </Providers>
-    </html>
+    </html >
   );
 }

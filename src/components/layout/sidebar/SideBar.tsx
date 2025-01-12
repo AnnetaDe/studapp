@@ -1,10 +1,6 @@
 'use client';
-import { useState } from 'react';
 import { SIDEBAR_DATA } from './sideBar.data';
-import { SideBarHeader } from './sideBarHeader/HeaderLeft';
 import SideMenu from './sideBarMenus/SideMenu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNavicon } from '@fortawesome/free-solid-svg-icons';
 
 export function Sidebar({ isOpened }: { isOpened: boolean }) {
   isOpened ? 'translate-x-0' : '-translate-x-full';

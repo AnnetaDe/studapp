@@ -1,3 +1,5 @@
 {
-    "npm.packageManager": "bun"
+    "npm.packageManager": "bun",
+    "editor.formatOnSave": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true
 }

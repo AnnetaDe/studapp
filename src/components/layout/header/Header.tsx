@@ -20,7 +20,7 @@ export function Header({ toggle, isOpen }: { toggle: () => void; isOpen: boolean
   };
 
   return (
-    <header className="bg-slate-600 w-screen px-2 py-2 h-14 fixed top-0 ">
+    <header className="bg-foreground-300 w-screen px-2 py-2 h-14 fixed top-0 ">
       <div className="flex justify-between items-center ">
         <div className="flex items-center gap-2">
           <ButtonMenu
@@ -31,7 +31,7 @@ export function Header({ toggle, isOpen }: { toggle: () => void; isOpen: boolean
           <HeaderLeft />
         </div>
         <Link
-          className=" flex bg-slate-700 rounded-full overflow-hidden items-center justify-center ring-0 ring-gray-300 w-[40px] h-[40px] transform transition-all hover:ring-8 focus:ring-4 ring-opacity-30 duration-200 shadow-md ml-2"
+          className=" flex bg-slate-800 rounded-full overflow-hidden items-center justify-center ring-0 ring-gray-300 w-[40px] h-[40px] transform transition-all hover:ring-8 focus:ring-4 ring-opacity-30 duration-200 shadow-md ml-2"
           href="/login"
           onClick={onLogOut}
         >
