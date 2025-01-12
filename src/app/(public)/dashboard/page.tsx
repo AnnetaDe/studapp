@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: '',
 };
 
-export default function Page() {
-  return <DashBoard />;
+export default async function Page() {
+	return <DashBoard />;
 }

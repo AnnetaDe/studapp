@@ -39,7 +39,7 @@ class TestService {
 	}
 
 	getTestById(test_id: string) {
-		const response = axiosAuth({
+		const response = axiosNoAuth({
 			url: '/test/onetest',
 			method: 'get',
 			params: { test_id: test_id },

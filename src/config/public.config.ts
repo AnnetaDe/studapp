@@ -1,15 +1,18 @@
 class studentPage {
-  DASHBOARD = '/dashboard';
-  GENERATE = '/generate';
+	DASHBOARD = '/dashboard';
+	TEST(path: string) {
+		return `/dashboard/${path}`;
+	}
 }
 class AuthPage {
-  LOGIN = '/login';
-  REGISTER = '/register';
+	LOGIN = '/login';
+	REGISTER = '/register';
 }
 class PublicPage {
-  HOME = '/';
-  EXPLORE = '/explore';
-  AWARDS = '/awards';
+	HOME = '/';
+	EXPLORE = '/explore';
+	AWARDS = '/awards';
+	GENERATE = '/generate';
 }
 export const STUDENT_PAGE_config = new studentPage();
 export const AUTH_PAGE_CONFIG = new AuthPage();

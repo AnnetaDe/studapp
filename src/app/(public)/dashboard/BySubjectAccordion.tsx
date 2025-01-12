@@ -1,6 +1,9 @@
 'use client';
+import { STUDENT_PAGE_config } from '@/config/public.config';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useMemo } from 'react';
+import { OneTest } from './OneTest';
 interface Props {
 	user_id?: string;
 	data: {
@@ -23,9 +26,8 @@ interface Props {
 	};
 }
 
-export const BySubjectAccordion = ({ data }: Props) => {
-	const router = useRouter();
-	const grouped = React.useMemo(() => {
+export const BySubjectAccordion: React.FC<Props> = ({ data }) => {
+	const grouped = useMemo(() => {
 		return data.data.performance.tests.reduce(
 			(acc, obj) => {
 				const key = obj.test_subject;
@@ -36,11 +38,6 @@ export const BySubjectAccordion = ({ data }: Props) => {
 			{} as { [key: string]: typeof data.data.performance.tests }
 		);
 	}, [data]);
-	const navigateToTest = (testId: string) => {
-		if (router) {
-			router.push(`/dashboard/${testId}`);
-		}
-	};
 
 	return (
 		<div>
@@ -51,15 +48,8 @@ export const BySubjectAccordion = ({ data }: Props) => {
 							<h2 className="text-bold text-2xl">{subject}</h2>
 							<ol>
 								{group.map((test, index) => (
-									<li
-										className="bg cursor-pointer bg-slate-300 p-2"
-										key={index}
-										onClick={() => navigateToTest(test.test_id)}
-									>
-										<p>Test ID: {test.test_id}</p>
-										<p>Correct Answers: {test.correct_answers}</p>
-										<p>Incorrect Answers: {test.num_test_questions - test.correct_answers}</p>
-										<p>Num: {test.num_test_questions}</p>
+									<li key={index}>
+										<OneTest test={test} />
 									</li>
 								))}
 							</ol>

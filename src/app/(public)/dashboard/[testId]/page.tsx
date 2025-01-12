@@ -1,10 +1,11 @@
-import { DynamicOneTest } from './DynamicOneTest';
+import { OneDynamicTest } from './OneDynamicTest';
 
-export default async function Page(test_id: string) {
-	const id = test_id;
+export default async function Page({ params }: { params: { testId: string } }) {
+	const testId = (await params).testId;
+
 	return (
 		<div>
-			<DynamicOneTest test_id={id} />
+			<OneDynamicTest testId={testId} />
 		</div>
 	);
 }
