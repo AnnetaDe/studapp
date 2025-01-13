@@ -4,8 +4,7 @@ import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useState } from 'react';
-import { HeaderLeft } from '../sidebar/sideBarHeader/HeaderLeft';
+import { HeaderLeft } from './HeaderLeft';
 import { ButtonMenu } from '@/ui/Button/ButtonMenu';
 
 export function Header({ toggle, isOpen }: { toggle: () => void; isOpen: boolean }) {

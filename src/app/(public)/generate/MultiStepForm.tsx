@@ -53,7 +53,6 @@ type FormValues = {
 
 export const MultiStepForm = () => {
 	const { userId } = useUserContext();
-	console.log('user', userId);
 
 	const { register, handleSubmit, reset, watch, control } = useForm<FormValues>();
 	const [testRequirements, setTestRequirements] = useState<ITestRequerements>({
@@ -109,12 +108,10 @@ export const MultiStepForm = () => {
 			};
 			setTestResults(results);
 			setStep(3);
-			console.log('results', results);
 		},
 	});
 	const onSubmitRequirements = (requirementsData: FormValues['step1']) => {
 		mutationGenerate.mutate(requirementsData);
-		console.log('succes', requirementsData);
 	};
 	const onSubmitResults = () => {
 		if (!generatedQuestions) return;
@@ -124,7 +121,6 @@ export const MultiStepForm = () => {
 			selected_answers: generatedQuestions.test_data.map(q => q.selected_answer || 0),
 			user_id: userId ? userId : '',
 		};
-		console.log('submit', submissionData);
 
 		mutationSubmit.mutate(submissionData);
 		reset();

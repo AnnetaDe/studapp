@@ -1,15 +1,28 @@
 'use client';
 import { authService } from '@/services/auth.service';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export default function Page() {
-  const mytateProfile = {
-    mutationFn: () => authService.profile(),
-  };
-
-  const ShowProfile = () => {
-    mytateProfile.mutationFn();
-  };
-
-  return <button onClick={ShowProfile}>profile</button>;
+	return (
+		<div className="flex flex-col justify-center">
+			coming soon...
+			<Link
+				className="inline-block cursor-pointer p-2 text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
+				href="/generate"
+			>
+				<span className="mr-2">Take a test</span>
+				<FontAwesomeIcon icon={faArrowAltCircleRight} />
+			</Link>
+			<Link
+				href="/dashboard"
+				className="inline-block cursor-pointer p-2 text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
+			>
+				<span className="mr-2">Go to Dashboard</span>
+				<FontAwesomeIcon icon={faArrowAltCircleRight} />
+			</Link>
+		</div>
+	);
 }

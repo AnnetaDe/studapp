@@ -18,7 +18,6 @@ export const OneDynamicTest = (testId: OneTestProp) => {
 		queryFn: () => testService.getTestById(testId?.testId as string),
 		enabled: !!testId,
 	});
-	console.log('data', data?.data.history);
 
 	if (isLoading) return <div> Loading ..</div>;
 

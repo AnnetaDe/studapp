@@ -84,7 +84,12 @@ export const DashBoard: React.FC = () => {
 			}
 		: { label: 'Performance', datasets: [] };
 
-	if (isLoading) return <Loader />;
+	if (isLoading)
+		return (
+			<div className="flex items-center justify-center">
+				<Loader />
+			</div>
+		);
 	if (error) return <div>Opps!... {error.message}</div>;
 
 	return (
