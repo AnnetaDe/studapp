@@ -11,29 +11,30 @@ interface UserContextType {
 
 const UserContext = createContext<UserContextType | null>(null);
 import type { ReactNode } from 'react';
+import toast from 'react-hot-toast';
 
 interface UserProviderProps {
-  children: ReactNode;
+	children: ReactNode;
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [userId, setUserId] = useState(null);
-  const [userBoard, setUserBoard] = useState(null);
-  const [loading, setLoading] = useState(true);
+	const [userId, setUserId] = useState(null);
+	const [userBoard, setUserBoard] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-  return (
-    <UserContext.Provider
-      value={{ userId, setUserId, userBoard, setUserBoard, loading, setLoading }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+	return (
+		<UserContext.Provider
+			value={{ userId, setUserId, userBoard, setUserBoard, loading, setLoading }}
+		>
+			{children}
+		</UserContext.Provider>
+	);
 };
 
 export const useUserContext = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error('useUserContext must be used within a UserProvider');
-  }
-  return context;
+	const context = useContext(UserContext);
+	if (!context) {
+		throw new Error('useUserContext must be used within a UserProvider');
+	}
+	return context;
 };

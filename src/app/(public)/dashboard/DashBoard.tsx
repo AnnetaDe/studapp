@@ -15,6 +15,7 @@ import {
 } from '../../../components/ui/dashboard/chartData';
 import { Loader } from '@/ui/loader/Loader';
 import { BySubjectAccordion } from '@/ui/dashboard/BySubjectAccordion';
+import toast from 'react-hot-toast';
 
 export const DashBoard: React.FC = () => {
 	const { userId } = useUserContext();
@@ -90,7 +91,7 @@ export const DashBoard: React.FC = () => {
 				<Loader />
 			</div>
 		);
-	if (error) return <div>Opps!... {error.message}</div>;
+	if (error) return toast.error('An error occurred while fetching data');
 
 	return (
 		<div className="mx-auto max-w-6xl overflow-auto bg-white p-4">

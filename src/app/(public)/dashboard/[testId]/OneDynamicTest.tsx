@@ -22,7 +22,7 @@ export const OneDynamicTest = (testId: OneTestProp) => {
 	if (isLoading) return <div> Loading ..</div>;
 
 	if (isError) {
-		return <div>error</div>;
+		return <div>toast.error("smth went wrong")</div>;
 	}
 	// if (!userId) {
 	// 	return (

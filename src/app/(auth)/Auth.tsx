@@ -8,45 +8,52 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useUserContext } from '../UserProvider';
+import toast from 'react-hot-toast';
 
 interface AuthProps {
-  isLogin: boolean;
+	isLogin: boolean;
 }
 
 export default function Auth({ isLogin }: AuthProps) {
-  const { register, handleSubmit, reset } = useForm<IAuthFormData>();
-  const router = useRouter();
-  const { setUserId } = useUserContext();
-  const { setUserBoard } = useUserContext();
+	const { register, handleSubmit, reset } = useForm<IAuthFormData>();
+	const router = useRouter();
+	const { setUserId } = useUserContext();
+	const { setUserBoard } = useUserContext();
 
-  const mutationLogin = useMutation({
-    mutationFn: (data: IAuthFormData) => authService.login(data),
-    onSuccess: data => {
-      router.push('/');
-      console.log();
-      setUserId(data.data.user._id);
-      setUserBoard(data.data.user.performance);
-      reset();
-    },
-  });
+	const mutationLogin = useMutation({
+		mutationFn: (data: IAuthFormData) => authService.login(data),
+		onSuccess: data => {
+			router.push('/');
+			console.log();
+			setUserId(data.data.user._id);
+			setUserBoard(data.data.user.performance);
+			reset();
+		},
+		onError(error) {
+			toast.error('Login failed check your credentials');
+		},
+	});
 
-  const mutationRegister = useMutation({
-    mutationFn: (data: IAuthFormData) => authService.register(data),
-    onSuccess: data => {
-      router.push('/login');
-      reset();
-    },
-  });
+	const mutationRegister = useMutation({
+		mutationFn: (data: IAuthFormData) => authService.register(data),
+		onSuccess: data => {
+			router.push('/login');
+			reset();
+		},
+		onError(error) {
+			toast.error('Registration failed check your credentials');
+		},
+	});
 
-  const onSubmit = (data: IAuthFormData) => {
-    if (isLogin) {
-      mutationLogin.mutate(data);
-    } else {
-      mutationRegister.mutate(data);
-    }
-  };
+	const onSubmit = (data: IAuthFormData) => {
+		if (isLogin) {
+			mutationLogin.mutate(data);
+		} else {
+			mutationRegister.mutate(data);
+		}
+	};
 
-  return (
+	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className="mx-auto mt-10 flex w-full max-w-sm flex-col rounded bg-slate-700 px-8 pb-8 pt-6 shadow-md"
