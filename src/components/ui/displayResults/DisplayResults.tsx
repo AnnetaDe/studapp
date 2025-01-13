@@ -12,9 +12,9 @@ type Props = {
 export const DisplayResults = ({ results, resetTest }: Props) => {
 	return (
 		<div className="results grid max-w-sm grid-cols-1 place-items-center gap-4 bg-slate-200 p-4 text-slate-700 max-sm:mx-auto">
-			<h3 className="text-center text-xl">Results</h3>
+			<h3 className="text-center text-lg">Results</h3>
 
-			<Card className="h-[300px] w-[300px] border-none bg-gradient-to-br from-violet-500 to-fuchsia-500">
+			<Card className="bg-witch h-[300px] w-[300px] border-none text-white">
 				<CardBody className="items-center justify-center pb-0">
 					<CircularProgress
 						classNames={{

@@ -20,28 +20,28 @@ export function Header({ toggle, isOpen }: { toggle: () => void; isOpen: boolean
   };
 
   return (
-    <header className="bg-foreground-300 w-screen px-2 py-2 h-14 fixed top-0 ">
-      <div className="flex justify-between items-center ">
-        <div className="flex items-center gap-2">
-          <ButtonMenu
-            toggle={toggle}
-            isOpen={isOpen}
-          />
+		<header className="fixed top-0 z-50 h-12 w-screen bg-[rgba(51,59,82,0.8)] px-2 py-1">
+			<div className="mx-2 flex items-center justify-between">
+				<div className="flex items-center gap-4">
+					<ButtonMenu
+						toggle={toggle}
+						isOpen={isOpen}
+					/>
 
-          <HeaderLeft />
-        </div>
-        <Link
-          className=" flex bg-slate-800 rounded-full overflow-hidden items-center justify-center ring-0 ring-gray-300 w-[40px] h-[40px] transform transition-all hover:ring-8 focus:ring-4 ring-opacity-30 duration-200 shadow-md ml-2"
-          href="/login"
-          onClick={onLogOut}
-        >
-          <FontAwesomeIcon
-            icon={faPersonRunning}
-            fontSize={28}
-            color="white"
-          />
-        </Link>
-      </div>
-    </header>
-  );
+					<HeaderLeft />
+				</div>
+				<Link
+					className="ml-2 flex h-[40px] w-[40px] transform items-center justify-center overflow-hidden rounded-full bg-slate-800 shadow-md ring-0 ring-gray-300 ring-opacity-30 transition-all duration-200 hover:ring-8 focus:ring-4"
+					href="/login"
+					onClick={onLogOut}
+				>
+					<FontAwesomeIcon
+						icon={faPersonRunning}
+						fontSize={28}
+						color="white"
+					/>
+				</Link>
+			</div>
+		</header>
+	);
 }

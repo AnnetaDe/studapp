@@ -5,30 +5,7 @@
 
 
 body {
-  @apply text-slate-800;
-  @apply text-sm;
+  color: theme('colors.slate.800');
+  font-size: theme('fontSize.sm');
 
 }
-p{
-  @apply text-slate-800;
-  @apply text-sm;
-}
-
-// .titanium {
-//   background: linear-gradient(to right, #283048, #859398);
-// }
-// .bluewood {
-//   background: #2C3E50;
-//   background: linear-gradient(
-//     to right,
-//     #2C3E50,#FD746C
-//   );
-// }
-
-// .ash {
-//   background: #606c88;
-//   background: linear-gradient(
-//     to right,
-//     #606c88,#3f4c6b
-//   );
-// }

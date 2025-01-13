@@ -88,14 +88,16 @@ export const DashBoard: React.FC = () => {
 					total_tests={data ? data.data.performance.total_tests : 0}
 				/>
 
-				<div className="grid grid-cols-4 gap-4">
-					<BySubject
-						test_data={data ? data.data.performance.tests : []}
-						title_subject="Subject"
-						title_tests="Tests"
-						total_by_subj={data ? data.data.performance.total_by_subj : {}}
-					/>
-					<div className="col-span-3">
+				<div className="grid grid-cols-1 gap-4 md:grid-cols-5">
+					<div className="col-span-1">
+						<BySubject
+							test_data={data ? data.data.performance.tests : []}
+							title_subject="Subject"
+							title_tests="Tests"
+							total_by_subj={data ? data.data.performance.total_by_subj : {}}
+						/>
+					</div>
+					<div className="min-h-[360px] min-w-[360px] rounded-lg bg-white p-4 md:col-span-4">
 						<Polar chartdata={chartData} />
 					</div>
 				</div>

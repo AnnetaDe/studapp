@@ -5,20 +5,27 @@ type Props = {
 };
 
 export const Summary = ({ total_score, total_questions, total_tests }: Props) => (
-	<div className="mb-6">
+	<div className="mb-4 max-w-xl rounded-lg bg-white p-4">
 		<h2 className="text-md font-semibold">Summary</h2>
-		<ul className="flex list-none gap-4 pl-5">
-			<li>
-				Total Score:{' '}
-				<span className="ml-4 inline-block w-10 rounded-sm outline">{total_score}</span>
+		<ul className="flex list-none gap-4 py-3">
+			<li className="flex flex-col gap-2">
+				<p>Total Score:</p>
+				<span className="my-1 w-20 rounded-md bg-[#c98d9e] p-1 text-center text-white shadow-md">
+					{total_score}
+				</span>
 			</li>
-			<li>
-				Total Questions:{' '}
-				<span className="ml-4 inline-block w-10 rounded-sm outline">{total_questions}</span>
+			<li className="flex flex-col gap-2">
+				<p>Total Questions:</p>
+
+				<span className="my-1 w-20 rounded-md bg-[#c98d9e] p-1 text-center text-white shadow-md">
+					{total_questions}
+				</span>
 			</li>
-			<li>
-				Total Tests:{' '}
-				<span className="ml-4 inline-block w-10 rounded-sm outline">{total_tests}</span>
+			<li className="flex flex-col gap-2">
+				<p>Total Tests:</p>
+				<span className="my-1 w-20 rounded-md bg-[#c98d9e] p-1 text-center text-white shadow-md">
+					{total_tests}
+				</span>
 			</li>
 		</ul>
 	</div>

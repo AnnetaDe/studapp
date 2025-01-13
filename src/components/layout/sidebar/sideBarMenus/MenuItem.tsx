@@ -11,8 +11,8 @@ export function MenuItem({ item, isActive }: Props) {
 		<li className="mb-1 rounded-md">
 			<Link
 				href={item.link}
-				className={`flex items-center gap-4 bg-gray-100 px-4 py-2 hover:bg-gray-300 hover:text-slate-900 ${
-					isActive ? 'bg-witch' : 'text-slate-700'
+				className={`flex items-center gap-4 bg-slate-100 px-4 py-2 hover:bg-slate-300 hover:text-slate-900 ${
+					isActive ? 'bg-witch' : 'text-slate-800'
 				}`}
 			>
 				<FontAwesomeIcon

@@ -27,7 +27,7 @@ export default function QuestionItemNoAnswer({
 					<label
 						key={key}
 						htmlFor={`choice-${question_index}-${key}`}
-						className="mb-3 flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-3 transition hover:bg-gray-50 has-[:checked]:bg-indigo-300"
+						className="mb-3 flex cursor-pointer items-start gap-4 rounded-lg border border-gray-200 p-3 transition hover:bg-gray-50 has-[:checked]:bg-[#c98d9e]"
 					>
 						<div className="flex items-center">
 							&#8203;

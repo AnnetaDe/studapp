@@ -151,10 +151,10 @@ export const MultiStepForm = () => {
 	};
 
 	return (
-		<div className="px-2 py-8">
+		<div className="mx-auto max-w-4xl px-2 py-8">
 			MultiStepForm
 			{step == 1 && (
-				<div className="mx-auto max-w-sm items-end space-y-2 rounded-lg bg-slate-200 p-4">
+				<div className="mx-auto max-w-lg items-end space-y-2 rounded-lg bg-slate-200 p-4">
 					<form
 						onSubmit={handleSubmit(data => onSubmitRequirements(data.step1))}
 						autoComplete="off"
@@ -176,7 +176,7 @@ export const MultiStepForm = () => {
 							<Button
 								type="submit"
 								extraStyles={
-									'w-full h-full rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button'
+									'w-full h-full rounded-md border border-slate-300 py-2 px-2 text-center text-xs transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
 								}
 							>
 								Generate
