@@ -22,15 +22,12 @@ export const DashBoard: React.FC = () => {
 			</div>
 		);
 	}
-	console.log('user', userId);
 
 	const { data, error, isLoading } = useQuery({
 		queryKey: ['performance', userId],
 		queryFn: () => testService.performance(userId),
 		enabled: !!userId,
 	});
-
-	console.log('data', data?.data.performance);
 
 	const groupedData = data?.data.performance.tests.reduce((acc: any, test: any) => {
 		const topic = test.test_subject;
@@ -82,28 +79,33 @@ export const DashBoard: React.FC = () => {
 	if (error) return <div>Opps!... {error.message}</div>;
 
 	return (
-		<div className="mx-auto overflow-auto bg-white p-4">
+		<div className="mx-auto max-w-5xl overflow-auto bg-white p-4">
 			<h1 className="mb-4 text-xl font-bold">User Performance Dashboard</h1>
-
-			<Summary
-				total_score={data ? data.data.performance.total_score : 0}
-				total_questions={data ? data.data.performance.total_questions : 0}
-				total_tests={data ? data.data.performance.total_tests : 0}
-			/>
 			<div className="mb-6">
-				<BySubject
-					test_data={data ? data.data.performance.tests : []}
-					title_subject="Subject"
-					title_tests="Tests"
-					total_by_subj={data ? data.data.performance.total_by_subj : {}}
+				<Summary
+					total_score={data ? data.data.performance.total_score : 0}
+					total_questions={data ? data.data.performance.total_questions : 0}
+					total_tests={data ? data.data.performance.total_tests : 0}
 				/>
-				<Polar chartdata={chartData} />
 
-				<h2 className="text-lg font-semibold">Tests</h2>
-				<BySubjectAccordion
-					user_id={userId}
-					data={data ? data : { data: { performance: { tests: [], total_by_subj: {} } } }}
-				/>
+				<div className="grid grid-cols-4 gap-4">
+					<BySubject
+						test_data={data ? data.data.performance.tests : []}
+						title_subject="Subject"
+						title_tests="Tests"
+						total_by_subj={data ? data.data.performance.total_by_subj : {}}
+					/>
+					<div className="col-span-3">
+						<Polar chartdata={chartData} />
+					</div>
+				</div>
+
+				<div>
+					<BySubjectAccordion
+						user_id={userId}
+						data={data ? data : { data: { performance: { tests: [], total_by_subj: {} } } }}
+					/>
+				</div>
 			</div>
 		</div>
 	);

@@ -8,12 +8,12 @@ export default function Content({
   isOpened: boolean;
 }) {
   return (
-    <div
-      className={`col-span-4 grid-cols-1 h-full transition-all duration-500 ease-in-out ${
-        isOpened ? `pl-32` : `pl-0`
-      }`}
-    >
-      <div className={`pt-16 pb-16 h-full px-6 block`}>{children}</div>
-    </div>
-  );
+		<div
+			className={`col-span-4 h-full grid-cols-1 transition-all duration-500 ease-in-out ${
+				isOpened ? `pl-52` : `pl-0`
+			}`}
+		>
+			<div className={`block h-full px-6 pb-16 pt-16`}>{children}</div>
+		</div>
+	);
 }

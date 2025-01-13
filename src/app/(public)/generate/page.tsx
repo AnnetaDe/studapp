@@ -1,5 +1,5 @@
-import { MultiStepForm } from '@/ui/formGenerate/MultiStepForm';
+import { MultiStepForm } from '@/app/(public)/generate/MultiStepForm';
 
 export default function Page() {
-  return <MultiStepForm />;
+	return <MultiStepForm />;
 }

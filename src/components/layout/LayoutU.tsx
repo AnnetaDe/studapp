@@ -15,22 +15,22 @@ export default function LayoutU({ children }: LayoutUProps) {
   };
 
   return (
-    <div
-      className={`h-screen grid${
-        isOpened ? 'grid-cols-[200px_1fr]' : 'grid-cols-[0_1fr]'
-      }  relative transition-all duration-300`}
-    >
-      <Sidebar isOpened={isOpened} />
+		<div
+			className={`h-screen grid${
+				isOpened ? 'grid-cols-[240px_1fr]' : 'grid-cols-[0_1fr]'
+			} relative transition-all duration-300`}
+		>
+			<Sidebar isOpened={isOpened} />
 
-      <Header
-        toggle={toggleSidebar}
-        isOpen={isOpened}
-      />
-      <Content isOpened={isOpened}>{children}</Content>
+			<Header
+				toggle={toggleSidebar}
+				isOpen={isOpened}
+			/>
+			<Content isOpened={isOpened}>{children}</Content>
 
-      <footer className="w-screen bg-slate-700 text-gray-700 p-2 text-right mx-auto   fixed bottom-0">
-        &copy;
-      </footer>
-    </div>
-  );
+			<footer className="fixed bottom-0 mx-auto w-screen bg-slate-800 text-right text-slate-200">
+				&copy;
+			</footer>
+		</div>
+	);
 }

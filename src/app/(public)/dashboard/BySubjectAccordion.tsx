@@ -41,12 +41,13 @@ export const BySubjectAccordion: React.FC<Props> = ({ data }) => {
 
 	return (
 		<div>
+			<h2 className="text-md font-semibold">Tests</h2>
 			<ul>
 				{grouped &&
 					Object.entries(grouped).map(([subject, group]) => (
 						<li key={subject}>
-							<h2 className="text-bold text-2xl">{subject}</h2>
-							<ol>
+							<h2 className="text-bold text-md">{subject}</h2>
+							<ol className="flex flex-wrap gap-2">
 								{group.map((test, index) => (
 									<li key={index}>
 										<OneTest test={test} />

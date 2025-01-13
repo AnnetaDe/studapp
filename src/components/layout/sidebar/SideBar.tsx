@@ -6,12 +6,12 @@ export function Sidebar({ isOpened }: { isOpened: boolean }) {
   isOpened ? 'translate-x-0' : '-translate-x-full';
 
   return (
-    <aside
-      className={` sidebar py-16 bg-slate-800 text-white h-full overflow-y-auto fixed  top-0 left-0 transition-transform max-w-50 ${
-        isOpened ? 'translate-x-0' : '-translate-x-full'
-      } w-50`}
-    >
-      <SideMenu menu={SIDEBAR_DATA} />
-    </aside>
-  );
+		<aside
+			className={`sidebar fixed left-0 top-0 h-full max-w-56 overflow-y-auto py-16 text-white transition-transform ${
+				isOpened ? 'translate-x-0' : '-translate-x-full'
+			} bg-titanium w-56 border-slate-700`}
+		>
+			<SideMenu menu={SIDEBAR_DATA} />
+		</aside>
+	);
 }

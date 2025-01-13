@@ -18,12 +18,12 @@ export default function SideMenu({ title, menu }: SideBarMenuProps) {
           const isActive = pathname === item.link;
 
           return (
-            <MenuItem
-              key={item.label}
-              item={item}
-              isActive={isActive}
-            />
-          );
+						<MenuItem
+							key={item.label}
+							item={item}
+							isActive={isActive}
+						/>
+					);
         })}
       </ul>
     </nav>

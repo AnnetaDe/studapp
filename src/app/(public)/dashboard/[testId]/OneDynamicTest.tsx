@@ -1,14 +1,16 @@
 'use client';
+import { Card, Skeleton, Button } from '@nextui-org/react';
+
 import { useUserContext } from '@/app/UserProvider';
 import { testService } from '@/services/test.service';
-import { SkeletonLoader } from '@/ui/skeletonLoader/SkeletonLoader';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { OneDynamicQuestion } from './OneDynamicQuestion';
 
 interface OneTestProp {
 	testId: string | undefined;
 }
-export function OneDynamicTest(testId: OneTestProp) {
+export const OneDynamicTest = (testId: OneTestProp) => {
 	const { userId } = useUserContext();
 
 	const { data, isLoading, isError } = useQuery({
@@ -18,7 +20,7 @@ export function OneDynamicTest(testId: OneTestProp) {
 	});
 	console.log('data', data?.data.history);
 
-	if (isLoading) return <SkeletonLoader count={1} />;
+	if (isLoading) return <div> Loading ..</div>;
 
 	if (isError) {
 		return <div>error</div>;
@@ -33,25 +35,24 @@ export function OneDynamicTest(testId: OneTestProp) {
 	const dateOfTest = new Date(data?.data.history.timestamp);
 	return (
 		<div>
-			{/* {isLoading ? <SkeletonLoader count={1} /> : <div>Test ID: {testId}</div>} */}
 			{data && <div>{data.data.history.subject}</div>}
 			{data && <div>{dateOfTest.toDateString()}</div>}
 			{data && (
-				<div>
-					{data.data.history.test_data.map((test: any, inx: number) => (
-						<div key={`${test.id}+${inx}`}>
-							<h3>Question: {test.question}</h3>
-							<div>
-								Submitted Answer: <strong>{test.choices?.[test.submitted_answer]}</strong>
-							</div>
-							<div>
-								Correct Answer: <strong>{test.choices?.[test.correct_answer]}</strong>
-							</div>
-							{test.is_correct ? <div>correct</div> : <div>incorrect</div>}
-						</div>
+				<ul className="max-w-md divide-y divide-slate-300 overflow-hidden rounded-lg border border-slate-300 bg-white px-1 shadow-md">
+					{data.data.history.test_data.map((test: any, idx: number) => (
+						<li
+							className="flex items-center bg-white p-2"
+							key={`${test.id}+${idx}`}
+						>
+							<div></div>
+							<OneDynamicQuestion
+								test={test}
+								idx={idx}
+							/>
+						</li>
 					))}
-				</div>
+				</ul>
 			)}
 		</div>
 	);
-}
+};
