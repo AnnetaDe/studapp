@@ -13,7 +13,7 @@ export default function Content({
 				isOpened ? `pl-52` : `pl-0`
 			}`}
 		>
-			<div className={`mx-auto block h-full px-6 pb-16 pt-16`}>{children}</div>
+			<div className={`md: mx-auto block h-full px-6 pb-16 pt-16`}>{children}</div>
 		</div>
 	);
 }

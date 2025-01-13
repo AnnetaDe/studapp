@@ -28,7 +28,7 @@ export default function LayoutU({ children }: LayoutUProps) {
 			/>
 			<Content isOpened={isOpened}>{children}</Content>
 
-			<footer className="fixed bottom-0 mx-auto w-screen bg-slate-800 text-right text-slate-200">
+			<footer className="fixed bottom-0 mx-auto w-screen bg-[rgba(51,59,82,1)] text-right text-slate-200">
 				&copy;
 			</footer>
 		</div>

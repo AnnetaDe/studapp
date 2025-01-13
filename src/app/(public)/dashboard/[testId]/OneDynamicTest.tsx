@@ -38,10 +38,10 @@ export const OneDynamicTest = (testId: OneTestProp) => {
 			{data && <div>{data.data.history.subject}</div>}
 			{data && <div>{dateOfTest.toDateString()}</div>}
 			{data && (
-				<ul className="max-w-md divide-y divide-slate-300 overflow-hidden rounded-lg border border-slate-300 bg-white px-1 shadow-md">
+				<ul className="max-w-2xl divide-y divide-slate-300 overflow-hidden rounded-lg bg-white px-1">
 					{data.data.history.test_data.map((test: any, idx: number) => (
 						<li
-							className="flex items-center bg-white p-2"
+							className="flex items-center gap-4 bg-white p-4 transition duration-200 hover:bg-slate-100"
 							key={`${test.id}+${idx}`}
 						>
 							<div></div>

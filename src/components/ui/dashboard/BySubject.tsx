@@ -7,9 +7,9 @@ type Props = {
 
 export const BySubject = ({ total_by_subj, title_subject, title_tests, test_data }: Props) => {
 	return (
-		<div className="w-fit rounded-lg p-2 shadow-lg">
+		<div className="mx-auto rounded-lg bg-white">
 			<h2 className="text-md font-semibold">Top Subject</h2>
-			<table className="border border-slate-300 text-left text-xs">
+			<table className="max-w-xs rounded-lg border border-slate-300 text-left text-xs">
 				<thead className="bg-slate-100 text-gray-700">
 					<tr>
 						<th className="border border-slate-300 px-1 py-2">{title_subject}</th>

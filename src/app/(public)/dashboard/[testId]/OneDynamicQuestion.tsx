@@ -24,7 +24,7 @@ export const OneDynamicQuestion = ({ test, idx }: Props) => {
 		<div className="relative w-full">
 			<div className="pr-6">
 				<div className="p-2">
-					<h3 className="text-medium font-semibold">
+					<h3 className="text-sm font-semibold">
 						{idx + 1}: {test.question}
 					</h3>
 				</div>

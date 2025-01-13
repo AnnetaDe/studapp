@@ -79,7 +79,7 @@ export default function Auth({ isLogin }: AuthProps) {
 					type="submit"
 					variant={'login'}
 					extraStyles={
-						'mb-4, rounded bg-pink-700 transform rounded-sm py-2 font-bold duration-300 hover:bg-pink-400'
+						'mb-4  text-white rounded bg-witch transform rounded-sm py-2 font-bold duration-300 hover:bg-pink-400'
 					}
 				>
 					Login
@@ -90,7 +90,7 @@ export default function Auth({ isLogin }: AuthProps) {
 					type="submit"
 					variant={'register'}
 					extraStyles={
-						'mb-4 rounded bg-blue-500 transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-indigo-400'
+						'mb-4 text-white rounded bg-witch transform rounded-sm bg-indigo-600 py-2 font-bold duration-300 hover:bg-pink-400'
 					}
 				>
 					Register

@@ -7,10 +7,14 @@ import Link from 'next/link';
 import React from 'react';
 import { Summary } from '@/ui/dashboard/Summary';
 import { BySubject } from '@/ui/dashboard/BySubject';
-import { Polar } from './Polar';
-import { backgroundColors, borderColors, wrongAnswers } from './chartData';
+import { Polar } from '../../../components/ui/dashboard/Polar';
+import {
+	backgroundColors,
+	borderColors,
+	wrongAnswers,
+} from '../../../components/ui/dashboard/chartData';
 import { Loader } from '@/ui/loader/Loader';
-import { BySubjectAccordion } from '@/app/(public)/dashboard/BySubjectAccordion';
+import { BySubjectAccordion } from '@/ui/dashboard/BySubjectAccordion';
 
 export const DashBoard: React.FC = () => {
 	const { userId } = useUserContext();
@@ -18,7 +22,12 @@ export const DashBoard: React.FC = () => {
 		return (
 			<div className="m-4">
 				<p>Please login to see your progress...</p>
-				<Link href="/login">Login</Link>
+				<Link
+					className="inline-block cursor-pointer p-2 text-center text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
+					href="/login"
+				>
+					Login
+				</Link>
 			</div>
 		);
 	}
@@ -79,7 +88,7 @@ export const DashBoard: React.FC = () => {
 	if (error) return <div>Opps!... {error.message}</div>;
 
 	return (
-		<div className="mx-auto max-w-5xl overflow-auto bg-white p-4">
+		<div className="mx-auto max-w-6xl overflow-auto bg-white p-4">
 			<h1 className="mb-4 text-xl font-bold">User Performance Dashboard</h1>
 			<div className="mb-6">
 				<Summary
@@ -88,8 +97,8 @@ export const DashBoard: React.FC = () => {
 					total_tests={data ? data.data.performance.total_tests : 0}
 				/>
 
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-5">
-					<div className="col-span-1">
+				<div className="grid grid-cols-1 gap-4 md:grid-cols-7 md:gap-2">
+					<div className="col-span-1 md:col-span-2">
 						<BySubject
 							test_data={data ? data.data.performance.tests : []}
 							title_subject="Subject"
@@ -97,7 +106,7 @@ export const DashBoard: React.FC = () => {
 							total_by_subj={data ? data.data.performance.total_by_subj : {}}
 						/>
 					</div>
-					<div className="min-h-[360px] min-w-[360px] rounded-lg bg-white p-4 md:col-span-4">
+					<div className="aspect-square min-h-[320px] min-w-[320px] rounded-lg bg-white md:col-span-4">
 						<Polar chartdata={chartData} />
 					</div>
 				</div>

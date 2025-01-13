@@ -11,7 +11,7 @@ type Props = {
 
 export const DisplayResults = ({ results, resetTest }: Props) => {
 	return (
-		<div className="results grid max-w-sm grid-cols-1 place-items-center gap-4 bg-slate-200 p-4 text-slate-700 max-sm:mx-auto">
+		<div className="results grid max-w-sm grid-cols-1 place-items-center gap-4 p-4 text-slate-700 max-sm:mx-auto">
 			<h3 className="text-center text-lg">Results</h3>
 
 			<Card className="bg-witch h-[300px] w-[300px] border-none text-white">
