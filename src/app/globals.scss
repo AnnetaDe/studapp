@@ -1,11 +1,17 @@
-@import "tailwindcss/base";
+@import 'tailwindcss/base';
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 
 
-body {
-  color: theme('colors.slate.800');
-  font-size: theme('fontSize.sm');
+$color: theme('colors.slate.800');
+$font-size: theme('fontSize.sm');
+$background-color: theme('colors.white');
 
+body {
+  color: $color;
+  font-size: $font-size;
+  background-color: $background-color;
 }
+  
+
