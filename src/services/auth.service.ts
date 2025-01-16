@@ -43,14 +43,17 @@ class AuthService {
 	}
 
 	async logout() {
-		localStorage.removeItem('refresh_token');
-
 		return axiosAuth.post(API_ENDPOINTS.LOGOUT);
 	}
 	async refresh() {
 		try {
-			const refresh_token = localStorage.getItem('refresh_token');
-			return axiosNoAuth.post(API_ENDPOINTS.REFRESH);
+			const response = await axiosAuth.post(API_ENDPOINTS.REFRESH, null, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				withCredentials: true,
+			});
+			return response;
 		} catch (error) {
 			throw error;
 		}
