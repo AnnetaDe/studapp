@@ -13,33 +13,37 @@ class TestService {
 		return response;
 	}
 
-	submit_answers(data: ITestSubmit): Promise<AxiosResponse> {
-		const response = axiosNoAuth({
+	async submit_answers(data: ITestSubmit): Promise<AxiosResponse> {
+		const response = await axiosNoAuth({
 			url: '/test/submit',
 			method: 'post',
 			data: data,
 		});
 		return response;
 	}
-	history(params: { user_id: string }) {
-		const response = axiosNoAuth({
+	async history(params: { user_id: string }) {
+		const response = await axiosNoAuth({
 			url: '/test/history',
 			method: 'get',
 			params: params,
 		});
 		return response;
 	}
-	performance(userId: string) {
-		const response = axiosNoAuth({
+	async performance(userId: string) {
+		const response = await axiosNoAuth({
 			url: '/test/performance',
 			method: 'get',
 			params: { user_id: userId },
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			withCredentials: true,
 		});
 		return response;
 	}
 
-	getTestById(test_id: string) {
-		const response = axiosNoAuth({
+	async getTestById(test_id: string) {
+		const response = await axiosNoAuth({
 			url: '/test/onetest',
 			method: 'get',
 			params: { test_id: test_id },
