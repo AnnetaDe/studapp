@@ -17,8 +17,8 @@ class AuthService {
 			const response = await axiosNoAuth.post(API_ENDPOINTS.LOGIN, formData, {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
-					withCredentials: true,
 				},
+				withCredentials: true,
 			});
 
 			return response;
@@ -70,5 +70,5 @@ class AuthService {
 	}
 }
 
-
 export const authService = new AuthService();
+				
