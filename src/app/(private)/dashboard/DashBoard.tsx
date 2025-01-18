@@ -24,6 +24,9 @@ export const DashBoard: React.FC = () => {
 		queryKey: ['performance'],
 		queryFn: () => userService.performance(),
 	});
+		if (isLoading) {
+			return <div className="text-center">Loading...</div>;
+		}
 
 	if (data == null)
 		return (

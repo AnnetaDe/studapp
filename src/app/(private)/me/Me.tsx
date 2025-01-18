@@ -10,6 +10,9 @@ export const Me = () => {
 		queryKey: ['profile'],
 		queryFn: () => userService.profile(),
 	});
+	if (isLoading) {
+		return <div className="text-center">Loading...</div>;
+	}
 	const user = data?.user;
 	if (data == null || user == null || error) {
 		return (
