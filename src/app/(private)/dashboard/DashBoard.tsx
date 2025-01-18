@@ -45,7 +45,7 @@ export const DashBoard: React.FC = () => {
 	)
 		return (
 			<div className="flex flex-col items-center justify-center">
-				<span className="mr-2 text-xs">You have to take at list one test</span>
+				<span className="mr-2 text-xs">You have to take at least one test</span>
 				<Link
 					href="/generate"
 					className="inline-block cursor-pointer p-2 text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"

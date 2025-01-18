@@ -18,6 +18,8 @@ interface AuthProps {
 
 export default function Auth({ isLogin }: AuthProps) {
 	const { register, handleSubmit, reset } = useForm<IAuthFormData>();
+	const { setUserId, setUserBoard } = useUserContext();
+
 	const router = useRouter();
 
 	const mutationLogin = useMutation({
@@ -25,11 +27,11 @@ export default function Auth({ isLogin }: AuthProps) {
 		onSuccess: data => {
 			router.push('/dashboard');
 
-			// if (data && data.data && data.data.user) {
-			// 	setUserId(data.data.user._id);
-			// 	setUserBoard(data.data.user.performance);
-			// }
-			// reset();
+			if (data && data.data && data.data.user) {
+				setUserId(data.data.user._id);
+				setUserBoard(data.data.user.performance);
+			}
+			reset();
 		},
 		onError(error) {
 			toast.error('Login failed check your credentials');
