@@ -1,13 +1,9 @@
 'use client';
-import Auth from '@/app/(auth)/Auth';
 import { userService } from '@/services/user.service';
 import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 
 export const Me = () => {
 	const { data, isLoading, error, isSuccess, refetch } = useQuery({
@@ -30,11 +26,6 @@ export const Me = () => {
 
 					<FontAwesomeIcon icon={faArrowAltCircleRight} />
 				</Link>
-				{/* <Auth
-					isLogin={true}
-					path={'/me'}
-					onLogin={() => refetch()}
-				/> */}
 			</div>
 		);
 	}
