@@ -25,13 +25,11 @@ export default function Auth({ isLogin }: AuthProps) {
 	const mutationLogin = useMutation({
 		mutationFn: (data: IAuthFormData) => authService.login(data),
 		onSuccess: data => {
-			router.push('/dashboard');
-
 			if (data && data.data && data.data.user) {
 				setUserId(data.data.user._id);
 				setUserBoard(data.data.user.performance);
 			}
-			reset();
+			router.push('/');
 		},
 		onError(error) {
 			toast.error('Login failed check your credentials');
