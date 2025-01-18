@@ -1,4 +1,4 @@
-import { STUDENT_PAGE_CONFIG } from '@/config/pages.config';
+import { STUDENT_PAGE_config } from '@/config/public.config';
 import Link from 'next/link';
 
 interface ITest {
@@ -12,7 +12,7 @@ interface ITest {
 export function OneTest({ test }: { test: ITest }) {
 	return (
 		<Link
-			href={STUDENT_PAGE_CONFIG.TEST(test.test_id)}
+			href={STUDENT_PAGE_config.TEST(test.test_id)}
 			className="block max-w-sm cursor-pointer rounded-lg bg-slate-300 p-2 transition duration-200 hover:bg-slate-700 hover:text-slate-100"
 		>
 			<div className="group relative">

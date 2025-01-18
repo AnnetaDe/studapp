@@ -22,31 +22,22 @@ const axiosOptions: CreateAxiosDefaults = {
 export const axiosNoAuth = axios.create(axiosOptions);
 export const axiosAuth = axios.create(axiosAuthOptions);
 
-// axiosNoAuth.interceptors.response.use(async response => {
-// 	console.log('response', response);
-// 	const authorization = response.headers['authorization'];
-// 	console.log('authorization', authorization);
-// 	return response;
-// });
-
-	
-
-// axiosNoAuth.interceptors.request.use(
-// 	config => config,
-// 	async error => {
-// 		const originalReq = error.config;
-// 		if (error.response?.status === 401 && !originalReq._retry) {
-// 			originalReq._retry = true;
-// 			try {
-// 				const response = await axiosNoAuth.post('/auth/refresh', null, {
-// 					withCredentials: true,
-// 				});
-// 				return response;
-// 			} catch (error) {
-// 				console.log('Error refreshing token:', error);
-// 				throw new Error('Error refreshing token');
-// 			}
-// 		}
-// 		return Promise.reject(error);
-// 	}
-// );
+axiosNoAuth.interceptors.request.use(
+	config => config,
+	async error => {
+		const originalReq = error.config;
+		if (error.response?.status === 401 && !originalReq._retry) {
+			originalReq._retry = true;
+			try {
+				const response = await axiosNoAuth.post('/auth/refresh', null, {
+					withCredentials: true,
+				});
+				return response;
+			} catch (error) {
+				console.log('Error refreshing token:', error);
+				throw new Error('Error refreshing token');
+			}
+		}
+		return Promise.reject(error);
+	}
+);

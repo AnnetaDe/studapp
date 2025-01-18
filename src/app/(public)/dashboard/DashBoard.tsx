@@ -1,7 +1,9 @@
 'use client';
+import { useUserContext } from '@/app/UserProvider';
 
 import { useQuery } from '@tanstack/react-query';
-
+import { testService } from '../../../services/test.service';
+import Link from 'next/link';
 import React from 'react';
 import { Summary } from '@/ui/dashboard/Summary';
 import { BySubject } from '@/ui/dashboard/BySubject';
@@ -14,47 +16,28 @@ import {
 import { Loader } from '@/ui/loader/Loader';
 import { BySubjectAccordion } from '@/ui/dashboard/BySubjectAccordion';
 import toast from 'react-hot-toast';
-import { userService } from '@/services/user.service';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 export const DashBoard: React.FC = () => {
-	const { data, error, isLoading } = useQuery({
-		queryKey: ['performance'],
-		queryFn: () => userService.performance(),
-	});
-
-	if (data == null)
+	const { userId } = useUserContext();
+	if (!userId) {
 		return (
-			<div className="flex flex-col items-center justify-center">
-				<span className="mr-2 text-xs"> You have to be authorized to scroll your dashboard</span>
+			<div className="m-4">
+				<p>Please login to see your progress...</p>
 				<Link
+					className="inline-block cursor-pointer p-2 text-center text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
 					href="/login"
-					className="inline-block cursor-pointer p-2 text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
 				>
-					<span className="mr-2"> Login</span>
+					Login
+				</Link>
+			</div>
+		);
+	}
 
-					<FontAwesomeIcon icon={faArrowAltCircleRight} />
-				</Link>
-			</div>
-		);
-	if (
-		(data && data.data && data.data.performance === null) ||
-		data.data.performance.tests.length === 0
-	)
-		return (
-			<div className="flex flex-col items-center justify-center">
-				<span className="mr-2 text-xs">You have to take at list one test</span>
-				<Link
-					href="/generate"
-					className="inline-block cursor-pointer p-2 text-lg transition duration-200 hover:border-[#c98d9e] hover:text-[#c98d9e]"
-				>
-					<span className="mr-2">Take a test</span>
-					<FontAwesomeIcon icon={faArrowAltCircleRight} />
-				</Link>
-			</div>
-		);
+	const { data, error, isLoading } = useQuery({
+		queryKey: ['performance', userId],
+		queryFn: () => testService.performance(userId),
+		enabled: !!userId,
+	});
 
 	const groupedData = data?.data.performance.tests.reduce((acc: any, test: any) => {
 		const topic = test.test_subject;
@@ -136,6 +119,7 @@ export const DashBoard: React.FC = () => {
 
 				<div>
 					<BySubjectAccordion
+						user_id={userId}
 						data={data ? data : { data: { performance: { tests: [], total_by_subj: {} } } }}
 					/>
 				</div>

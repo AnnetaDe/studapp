@@ -1,17 +1,19 @@
 class studentPage {
 	DASHBOARD = '/dashboard';
-	PROFILE = '/me';
 	TEST(path: string) {
 		return `/dashboard/${path}`;
 	}
 }
-
+class AuthPage {
+	LOGIN = '/login';
+	REGISTER = '/register';
+}
 class PublicPage {
 	HOME = '/';
 	EXPLORE = '/explore';
-	LOGIN = '/login';
-	REGISTER = '/register';
+	AWARDS = '/awards';
 	GENERATE = '/generate';
 }
-export const STUDENT_PAGE_CONFIG = new studentPage();
+export const STUDENT_PAGE_config = new studentPage();
+export const AUTH_PAGE_CONFIG = new AuthPage();
 export const PUBLIC_PAGE_CONFIG = new PublicPage();
