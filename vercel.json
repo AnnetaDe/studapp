@@ -1,8 +1,12 @@
 {
 	"rewrites": [
 		{
-			"source": "/api/:path*",
-			"destination": "https://back-production-1a05.up.railway.app/:path*"
+			"source": "/auth/:path*",
+			"destination": "https://back-production-1a05.up.railway.app/auth/:path*"
+		},
+		{
+			"source": "/test/:path*",
+			"destination": "https://back-production-1a05.up.railway.app/test/:path*"
 		}
 	]
 }
