@@ -14,6 +14,14 @@ const config: Config = {
 		extend: {
 			colors: COLORS,
 		},
+		screens: {
+			xs: '475px',
+			sm: '640px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
+			'2xl': '1536px',
+		},
 
 		backgroundImage: {
 			titanium: 'linear-gradient(to right, rgba(40, 48, 72, 1), rgba(133, 147, 152, 0.3))',

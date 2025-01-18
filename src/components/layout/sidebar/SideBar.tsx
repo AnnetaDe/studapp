@@ -7,9 +7,9 @@ export function Sidebar({ isOpened }: { isOpened: boolean }) {
 
   return (
 		<aside
-			className={`sidebar fixed left-0 top-0 h-full max-w-56 overflow-y-auto py-16 text-white transition-transform ${
+			className={`sidebar fixed left-0 top-0 h-full w-full overflow-y-auto py-16 text-white transition-all duration-300 ease-in-out sm:w-56 md:w-56 ${
 				isOpened ? 'translate-x-0' : '-translate-x-full'
-			} bg-titanium w-56 border-slate-700`}
+			} w-56 border-slate-700 bg-titanium`}
 		>
 			<SideMenu menu={SIDEBAR_DATA} />
 		</aside>

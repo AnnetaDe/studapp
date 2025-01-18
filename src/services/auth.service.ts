@@ -63,23 +63,7 @@ class AuthService {
 			throw error;
 		}
 	}
-	// async profile() {
-	// 	try {
-	// 		const response = await axiosNoAuth.get(API_ENDPOINTS.PROFILE, {
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 			},
-	// 			withCredentials: true,
-	// 		});
-	// 		return response.data;
-	// 	} catch (error) {
-	// 		if (axios.isAxiosError(error) && error.response?.status === 401) {
-	// 			console.log('Profile', error);
-	// 			return null;
-	// 		}
-	// 		throw error;
-	// 	}
-	// }
+
 }
 
 export const authService = new AuthService();
