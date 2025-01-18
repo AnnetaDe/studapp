@@ -7,6 +7,22 @@
 		{
 			"source": "/test/:path*",
 			"destination": "https://back-production-1a05.up.railway.app/test/:path*"
+		},
+		{
+			"source": "/login",
+			"destination": "https://back-production-1a05.up.railway.app/auth/login"
+		},
+		{
+			"source": "/register",
+			"destination": "https://back-production-1a05.up.railway.app/auth/register"
+		},
+		{
+			"source": "/private/dashboard",
+			"destination": "https://back-production-1a05.up.railway.app/test/performance"
+		},
+		{
+			"source": "/private/me",
+			"destination": "https://back-production-1a05.up.railway.app/auth/me"
 		}
 	]
 }
