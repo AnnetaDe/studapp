@@ -1,24 +1,25 @@
 import type { ISidebarNavItem } from './sidebar.types';
-import { PUBLIC_PAGE_CONFIG, STUDENT_PAGE_config } from '@/config/public.config';
+import { PUBLIC_PAGE_CONFIG, STUDENT_PAGE_CONFIG } from '@/config/pages.config';
 import { faBrain, faCompass, faRocket, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 export const SIDEBAR_DATA: ISidebarNavItem[] = [
 	{
+		icon: faTrophy,
+		label: 'Profile',
+		link: STUDENT_PAGE_CONFIG.PROFILE,
+		isBottomBorder: false,
+	},
+
+	{
 		icon: faRocket,
 		label: 'Dashboard',
-		link: STUDENT_PAGE_config.DASHBOARD,
+		link: STUDENT_PAGE_CONFIG.DASHBOARD,
 		isBottomBorder: false,
 	},
 	{
 		icon: faCompass,
 		label: 'Explore',
 		link: PUBLIC_PAGE_CONFIG.EXPLORE,
-		isBottomBorder: false,
-	},
-	{
-		icon: faTrophy,
-		label: 'Awards',
-		link: PUBLIC_PAGE_CONFIG.AWARDS,
 		isBottomBorder: false,
 	},
 
