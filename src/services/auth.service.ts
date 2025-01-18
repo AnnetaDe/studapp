@@ -1,6 +1,7 @@
 import { axiosAuth, axiosNoAuth } from '@/api/axios';
 import { API_ENDPOINTS } from '@/api/endpoints';
 import type { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 export interface IAuthFormData {
 	username: string;
@@ -9,7 +10,7 @@ export interface IAuthFormData {
 }
 
 class AuthService {
-	async login(data: IAuthFormData): Promise<AxiosResponse> {
+	async login(data: IAuthFormData): Promise<AxiosResponse | null> {
 		try {
 			const formData: URLSearchParams = new URLSearchParams();
 			formData.append('username', data.username);
@@ -23,12 +24,16 @@ class AuthService {
 
 			return response;
 		} catch (error) {
-			console.error('Error fetching login:', error);
+			if (axios.isAxiosError(error) && error.response?.status === 401) {
+				console.log('Login error', error);
+				return null;
+			}
+
 			throw error;
 		}
 	}
 
-	async register(data: IAuthFormData) {
+	async register(data: IAuthFormData): Promise<AxiosResponse | null> {
 		try {
 			const rdata = {
 				username: data.username,
@@ -58,19 +63,23 @@ class AuthService {
 			throw error;
 		}
 	}
-	async profile() {
-		try {
-			const response = await axiosAuth.get(API_ENDPOINTS.PROFILE);
-			return response.data;
-		} catch (error) {
-			if (error instanceof Error) {
-				console.error('Error fetching profile:', (error as any).response?.data || error.message);
-			} else {
-				console.error('Error fetching profile:', error);
-			}
-			throw error;
-		}
-	}
+	// async profile() {
+	// 	try {
+	// 		const response = await axiosNoAuth.get(API_ENDPOINTS.PROFILE, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			withCredentials: true,
+	// 		});
+	// 		return response.data;
+	// 	} catch (error) {
+	// 		if (axios.isAxiosError(error) && error.response?.status === 401) {
+	// 			console.log('Profile', error);
+	// 			return null;
+	// 		}
+	// 		throw error;
+	// 	}
+	// }
 }
 
 export const authService = new AuthService();

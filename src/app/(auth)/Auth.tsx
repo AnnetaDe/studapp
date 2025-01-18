@@ -12,22 +12,24 @@ import toast from 'react-hot-toast';
 
 interface AuthProps {
 	isLogin: boolean;
+	onLogin?: () => void;
+	path?: string;
 }
 
 export default function Auth({ isLogin }: AuthProps) {
 	const { register, handleSubmit, reset } = useForm<IAuthFormData>();
 	const router = useRouter();
-	const { setUserId } = useUserContext();
-	const { setUserBoard } = useUserContext();
 
 	const mutationLogin = useMutation({
 		mutationFn: (data: IAuthFormData) => authService.login(data),
 		onSuccess: data => {
-			router.push('/');
-			console.log();
-			setUserId(data.data.user._id);
-			setUserBoard(data.data.user.performance);
-			reset();
+			router.push('/dashboard');
+
+			// if (data && data.data && data.data.user) {
+			// 	setUserId(data.data.user._id);
+			// 	setUserBoard(data.data.user.performance);
+			// }
+			// reset();
 		},
 		onError(error) {
 			toast.error('Login failed check your credentials');

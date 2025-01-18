@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@use 'tailwindcss/base';
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
 
 
 
@@ -15,3 +15,8 @@ body {
 }
   
 
+@media (max-width: 393px) {
+  body {
+    font-size: 14px;
+  }
+}

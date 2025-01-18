@@ -18,7 +18,7 @@ export default function LayoutU({ children }: LayoutUProps) {
 		<div
 			className={`h-screen grid${
 				isOpened ? 'grid-cols-[240px_1fr]' : 'grid-cols-[0_1fr]'
-			} relative transition-all duration-300`}
+			} relative transition-[grid-template-columns] duration-300`}
 		>
 			<Sidebar isOpened={isOpened} />
 
