@@ -7,7 +7,7 @@ export function Sidebar({ isOpened }: { isOpened: boolean }) {
 
   return (
 		<aside
-			className={`sidebar fixed left-0 top-0 h-full w-full overflow-y-auto py-16 text-white transition-all duration-300 ease-in-out sm:w-56 md:w-56 ${
+			className={`sidebar fixed left-0 top-0 z-20 h-full w-full overflow-y-auto py-16 text-white transition-all duration-300 ease-in-out sm:w-56 md:w-56 ${
 				isOpened ? 'translate-x-0' : '-translate-x-full'
 			} w-56 border-slate-700 bg-titanium`}
 		>
